@@ -11,13 +11,10 @@ Collaborative todo list website made with HTML, JS y CSS. With capability to cre
 * [Carlos Nava](https://github.com/casanalo0703)
 * [Josue López.](https://github.com/Corvo52)
 * [Yael Matínez](https://github.com/YaelMM)
+* [Alejandro Villegas](https://github.com/ivanhue)
 
 # **¿Cómo empezar?/How to get started?**
 
 Simplemente [haz click aquí](https://casanalo0703.github.io/Proyecto_Sistemas/) y puedes empezar a usar la pagina web.
 
 Just [click here](https://casanalo0703.github.io/Proyecto_Sistemas/) so you can start using the website.
-
-XDDDDDDDDDD
-
-Hola
