@@ -58,6 +58,7 @@ todo_list.addEventListener("click", (e) => {
     }
     //Mark a note as favourite
     else if (todo.classList[0] === "fav-btn" || todo.parentElement.classList[0] === "fav-btn") {
+        
         if(todo.parentElement.classList[0] === "fav-btn")
         {
             todo=todo.parentElement;
@@ -65,12 +66,15 @@ todo_list.addEventListener("click", (e) => {
         if(todo.value == "true")
         {
             todo.value = false;
+            
         }
         else if(todo.value == "false")
         {
-            todo.value = true
+            todo.value = true;
+            
         }
-        favourites();
+        changeFav(todo.parentElement.children[2].value, todo.value);
+        
     }
 
 });
@@ -79,6 +83,7 @@ todo_list.addEventListener("click", (e) => {
 // functions
 //Sort the notes puthing the fovourites on top
 function favourites() {
+
     var list, i, switching, b, shouldSwitch;
     list = todo_list;
     switching = true;
@@ -87,21 +92,23 @@ function favourites() {
 
       switching = false;
       b = list.getElementsByTagName("div");
-      console.log();
 
       for (i = 0; i < (b.length - 1); i++) {
 
         shouldSwitch = false;
 
         if (b[i].children[1].value < b[i+1].children[1].value) {
-          shouldSwitch = true;
-          break;
+            shouldSwitch = true;
+            break;
         }
       }
       if (shouldSwitch) {
-
+        console.log(b[i].children[0].textContent);
+        console.log(b[i+1].children[0].textContent);
         b[i].parentNode.insertBefore(b[i + 1], b[i]);
         switching = true;
+        console.log(b[i].children[0].textContent);
+        console.log(b[i+1].children[0].textContent);
       }
 
     }
@@ -119,7 +126,7 @@ function Title(x) {
     h1.innerText = x;
 }
 
-function NewNote(content, color, Status, NoteId, MeAdmin/*, fav*/) {
+function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
     if (content != 0) {
         //creating element
         var div = document.createElement("div")
@@ -144,7 +151,7 @@ function NewNote(content, color, Status, NoteId, MeAdmin/*, fav*/) {
 
         b1.setAttribute("value", NoteId);
         b2.setAttribute("value", Status);
-        b3.setAttribute("value", false);/*change "false" to fav when implemented */
+        b3.setAttribute("value", fav);
         if (MeAdmin == false) {
             b1.style.display = "none";
             b2.style.display = "none";

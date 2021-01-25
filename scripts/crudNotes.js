@@ -29,14 +29,15 @@ firebase.auth().onAuthStateChanged(user => {
             db.ref(`groups/${idGroup}/admins/${user.uid}`).once('value', (e) => {
                 iamAdmin = e.val()
             })
-            NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin)
+            NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
         })
+        favourites();
 
     }
 })
 
 //
-function pushNote(text, color, status, favourite) {
+function pushNote(text, color, status) {
     firebase.auth().onAuthStateChanged(user => {
 
         if (user) {
@@ -68,6 +69,14 @@ function changeNote(id, status) {
         }
     })
 }
+//changes favourite status in database
+function changeFav(id, favourite) {
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            db.ref(`groups/${idGroup}/notes/${id}/favourite`).set(favourite)
+        }
+    })
+}
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
@@ -82,10 +91,10 @@ firebase.auth().onAuthStateChanged(user => {
 
             CleanNotes()
             groupRef.child('notes').once('value', note => {
-                console.log(note.key)
                 note.forEach(note => {
-                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin)
+                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
                 });
+                favourites();
             })
 
         })
@@ -99,8 +108,9 @@ firebase.auth().onAuthStateChanged(user => {
             })
             groupRef.child('notes').once('value', note => {
                 note.forEach(note => {
-                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin)
+                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
                 });
+                favourites();
             })
 
         })
@@ -111,7 +121,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 function quitGroup() {
     firebase.auth().onAuthStateChanged(function (user) {
-        console.log("Entre a quit")
+        
         if (user) {
             db.ref(`groups/${idGroup}/admins/${user.uid}`).remove()
             db.ref(`users/${user.uid}/groups/${idGroup}`).remove()
