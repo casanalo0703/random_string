@@ -233,17 +233,19 @@ closeNote.forEach((close) => {
 function copyElement(test) {
     let textArea = document.createElement("textarea");
     textArea.value = test.parentElement.textContent;
+    const popup = document.querySelector(".copy-popup");
     document.body.appendChild(textArea);
     textArea.focus();
     textArea.select();
     try {
-        var successful = document.execCommand('copy');
-        var msg = successful ? 'successful' : 'unsuccessful';
-        console.log('Copying text command was ' + msg);
+        let successful = document.execCommand('copy');
+        let msg = successful ? 'successful' : 'unsuccessful';
+        popup.classList.toggle("active");
+        console.log('Copying text command was ' + successful);
+        setTimeout(() => { popup.classList.remove("active"); }, 1000);
     } catch (err) {
         console.log('Oops, unable to copy');
     }
 
     document.body.removeChild(textArea);
-    console.log(test.parentElement.textContent);
 }
