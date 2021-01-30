@@ -230,6 +230,7 @@ closeNote.forEach((close) => {
     });
 })
 
+// this function allows to copy the text to the Clipboard
 function copyElement(test) {
     let textArea = document.createElement("textarea");
     textArea.value = test.parentElement.textContent;
