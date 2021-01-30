@@ -112,8 +112,8 @@ function LoadGroup(id, { name, psswrd }) {
     pTitle2.textContent = name;
     pContent.className = "content";
     pContent2.className = "content";
-    pContent.textContent = 'ID: ' + id + ', Password: ' + psswrd;
-    pContent2.textContent = 'ID: ' + id + ', Password: ' + psswrd;
+    pContent.innerHTML = 'ID: ' + id + ', Password: ' + psswrd + "<i style='font-size:1rem;margin:-20px' onclick = copyElement(this) class='fas fa-link'></i>";
+    pContent2.innerHTML = 'ID: ' + id + ', Password: ' + psswrd + "<i style='font-size:1rem;margin:-20px' onclick = copyElement(this) class='fas fa-link'></i>";
     divBtn.className = "btn note-btn";
     divBtn2.className = "btn note-btn";
 
@@ -229,3 +229,21 @@ closeNote.forEach((close) => {
         closeModal();
     });
 })
+
+function copyElement(test) {
+    let textArea = document.createElement("textarea");
+    textArea.value = test.parentElement.textContent;
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        var successful = document.execCommand('copy');
+        var msg = successful ? 'successful' : 'unsuccessful';
+        console.log('Copying text command was ' + msg);
+    } catch (err) {
+        console.log('Oops, unable to copy');
+    }
+
+    document.body.removeChild(textArea);
+    console.log(test.parentElement.textContent);
+}

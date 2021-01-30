@@ -213,7 +213,8 @@ header{
 	margin: 5px 0;
 	font-size: 14px;
 	line-height: 22px;
-	font-weight: 200;
+    font-weight: 200;
+    word-wrap: break-word;
 }
 
 .view_item .btn{
