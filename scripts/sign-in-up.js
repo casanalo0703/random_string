@@ -7,7 +7,11 @@ const modalTitle = document.querySelector(".header-title");
 const modalBody = document.querySelector(".modal-body");
 const overlay = document.getElementById("overlay");
 const closeModal = document.querySelector(".btn-right");
-
+//popup
+const btnOpenPopUp = document.getElementById('btn-forget-password');
+const containerPopUp = document.getElementById('modal-reset-password');
+const popup = document.getElementById('popup');
+const btnClosePopUp = document.getElementById('btn-close-popup');
 
 //Variables for each of the icons of the social network
 const googleIcon = document.getElementById("google"),
@@ -22,22 +26,23 @@ const auth = f.auth(),
     user = auth.currentUser,
     formSignin = d.getElementById('signin'),
     formLogin = d.getElementById('login')
+const sign_in_btn = document.querySelector("#sign-in-btn");
+const sign_up_btn = document.querySelector("#sign-up-btn");
+const container = document.querySelector(".container");
 
-function createUserInDB(uid, name, email) {
-    let usersRef = f.database().ref().child('users')
+//event listeners
 
-    usersRef.child(uid).set({
-        name,
-        email
-    }).then(() => {
-        window.location.replace("dashboard.html");
-    }).catch((err) => {
-        console.log(err);
-    })
-}
+//Event listener to change between login and signup
+sign_up_btn.addEventListener("click", () => {
+    container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+    container.classList.remove("sign-up-mode");
+});
 
 //Function that allows the launch of the login pop-up according to the social network used, receives as a parameter said network which can be: Google, Facebook or Twitter. If the registration of that social network is not enabled, no pop-up will be shown
-function signInSocial(plataform){
+function signInSocial(plataform) {
     let provider;
     switch (plataform) {
         case 'Google':
@@ -53,32 +58,32 @@ function signInSocial(plataform){
             return;
     }
     auth
-    .signInWithPopup(provider) // https://firebase.google.com/docs/auth/web/google-signin
-    .then((result) => {
-      let user = result.user;
-      c(result.additionalUserInfo.isNewUser)
-      if(result.additionalUserInfo.isNewUser){            
-        //Insert in DB
-        createUserInDB(
-            user.uid,
-            user.displayName,
-            user.email
-        );
-        c("Registro exitoso")
-        
-      }else{
-        window.location.replace("dashboard.html");
-      }
-    }).catch((error) => {
-        let errorMessage = error.message;
-        if(error.code=='auth/account-exists-with-different-credential'){
-            modalTitle.innerHTML = "Lo sentimos pero usted ya se ha registrado con ese correo.";
-            modalBody.innerHTML = "Por favor incie sesión con la cuenta creada anteriormente. Puede que ya tenga cuanta en otra red social pero vinculada a ese correo.";
-            modal.classList.add("active");
-            overlay.classList.add("active");
-        }
-        c(errorMessage);
-    });
+        .signInWithPopup(provider) // https://firebase.google.com/docs/auth/web/google-signin
+        .then((result) => {
+            let user = result.user;
+            c(result.additionalUserInfo.isNewUser)
+            if (result.additionalUserInfo.isNewUser) {
+                //Insert in DB
+                createUserInDB(
+                    user.uid,
+                    user.displayName,
+                    user.email
+                );
+                c("Registro exitoso")
+
+            } else {
+                window.location.replace("dashboard.html");
+            }
+        }).catch((error) => {
+            let errorMessage = error.message;
+            if (error.code == 'auth/account-exists-with-different-credential') {
+                modalTitle.innerHTML = "Lo sentimos pero usted ya se ha registrado con ese correo.";
+                modalBody.innerHTML = "Por favor incie sesión con la cuenta creada anteriormente. Puede que ya tenga cuanta en otra red social pero vinculada a ese correo.";
+                modal.classList.add("active");
+                overlay.classList.add("active");
+            }
+            c(errorMessage);
+        });
 }
 
 
@@ -206,38 +211,61 @@ const resetPasswordFunction = () => {
     const email = mailField.value
 
     autenti.sendPasswordResetEmail(email)
-    .then(() => {
-        c('Password Reset Email sent sussesfully!')
-    })
-    .catch(error => {
-        console.error(error);
-    })
+        .then(() => {
+            c('Password Reset Email sent sussesfully!')
+        })
+        .catch(error => {
+            console.error(error);
+        })
 }
 
 resetPassword.addEventListener('click', resetPasswordFunction);
 
 
 //Listners for each of the icons of the social network
-googleIcon.addEventListener('click', ()=>{
+googleIcon.addEventListener('click', () => {
     signInSocial('Google');
 });
 
-facebookIcon.addEventListener('click', ()=>{
+facebookIcon.addEventListener('click', () => {
     signInSocial('Facebook');
 });
 
-twitterIcon.addEventListener('click', ()=>{
+twitterIcon.addEventListener('click', () => {
     signInSocial('Twitter');
 });
 
-googleIconS.addEventListener('click', ()=>{
+googleIconS.addEventListener('click', () => {
     signInSocial('Google');
 });
 
-facebookIconS.addEventListener('click', ()=>{
+facebookIconS.addEventListener('click', () => {
     signInSocial('Facebook');
 });
 
-twitterIconS.addEventListener('click', ()=>{
+twitterIconS.addEventListener('click', () => {
     signInSocial('Twitter');
 });
+
+//popup
+btnOpenPopUp.addEventListener('click', function () {
+    containerPopUp.classList.add('active');
+    popup.classList.add('active');
+})
+
+btnClosePopUp.addEventListener('click', function () {
+    containerPopUp.classList.remove('active');
+    popup.classList.remove('active');
+})
+function createUserInDB(uid, name, email) {
+    let usersRef = f.database().ref().child('users')
+
+    usersRef.child(uid).set({
+        name,
+        email
+    }).then(() => {
+        window.location.replace("dashboard.html");
+    }).catch((err) => {
+        console.log(err);
+    })
+}

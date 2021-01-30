@@ -15,6 +15,6 @@ Collaborative todo list website made with HTML, JS y CSS. With capability to cre
 
 # **¿Cómo empezar?/How to get started?**
 
-Simplemente [haz click aquí](https://casanalo0703.github.io/Proyecto_Sistemas/) y puedes empezar a usar la pagina web.
+Simplemente [haz click aquí](https://casanalo0703.github.io/random_string/) y puedes empezar a usar la pagina web.
 
-Just [click here](https://casanalo0703.github.io/Proyecto_Sistemas/) so you can start using the website.
+Just [click here](https://casanalo0703.github.io/random_string/) so you can start using the website.
