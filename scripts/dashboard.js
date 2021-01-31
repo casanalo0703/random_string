@@ -24,7 +24,6 @@ var TitleValue;
 var PasswordValue;
 var GroupId;
 var JoinId;
-
 // eventListeners
 
 // navbar listener
@@ -91,6 +90,10 @@ function LoadGroup(id, { name, psswrd }) {
     var i2 = document.createElement("i");
     var viewR = document.createElement("div");
     var viewR2 = document.createElement("div");
+    var pExit = document.createElement("p");
+    var pExit2 = document.createElement("p");
+    pExit.textContent = "ELIMINAR GRUPO";
+    pExit2.textContent = "ELIMINAR GRUPO";
     var pTitle = document.createElement("p");
     var pTitle2 = document.createElement("p");
     var pContent = document.createElement("p");
@@ -116,9 +119,12 @@ function LoadGroup(id, { name, psswrd }) {
     pContent2.textContent = 'ID: ' + id + ', Password: ' + psswrd;
     divBtn.className = "btn note-btn";
     divBtn2.className = "btn note-btn";
-
+    pExit.className = "exit-btn";
+    pExit2.className = "exit-btn";
     divBtn.setAttribute("value", id);
     divBtn2.setAttribute("value", id);
+    pExit.setAttribute("id", id);
+    pExit2.setAttribute("id", id);
     var link = 'notes.html#' + id;
     var Hlink = "<a href = " + link + "> Abrir </a>";
     divBtn.innerHTML = Hlink;
@@ -127,12 +133,13 @@ function LoadGroup(id, { name, psswrd }) {
     viewL.appendChild(i);
     viewItem.appendChild(viewL);
     viewItem.appendChild(viewL);
+    viewR.appendChild(pExit);
     viewR.appendChild(pTitle);
     viewR.appendChild(pContent);
     viewR.appendChild(divBtn);
     viewItem.appendChild(viewR);
     wrap.appendChild(viewItem);
-
+    viewItem2.appendChild(pExit2);
     viewL2.appendChild(i2);
     viewItem2.appendChild(viewL2);
     viewR2.appendChild(pTitle2);
@@ -140,6 +147,16 @@ function LoadGroup(id, { name, psswrd }) {
     viewR2.appendChild(divBtn2);
     viewItem2.appendChild(viewR2);
     wrap2.appendChild(viewItem2);
+    pExit2.classList.add("grid-delete");
+
+
+    /* Button delete group for block and list */
+    pExit.addEventListener('click', () => {
+        delteGroup(pExit.getAttribute("id"));
+    });
+    pExit2.addEventListener('click', () => {
+        delteGroup(pExit.getAttribute("id"));
+    });
 }
 
 //changes between grid and list view
