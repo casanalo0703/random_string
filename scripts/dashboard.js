@@ -112,8 +112,8 @@ function LoadGroup(id, { name, psswrd }) {
     pTitle2.textContent = name;
     pContent.className = "content";
     pContent2.className = "content";
-    pContent.textContent = 'ID: ' + id + ', Password: ' + psswrd;
-    pContent2.textContent = 'ID: ' + id + ', Password: ' + psswrd;
+    pContent.innerHTML = 'ID: ' + id + ', Password: ' + psswrd + "<i style='font-size:1rem;margin:-20px' onclick = copyElement(this) class='fas fa-link'></i>";
+    pContent2.innerHTML = 'ID: ' + id + ', Password: ' + psswrd + "<i style='font-size:1rem;margin:-20px' onclick = copyElement(this) class='fas fa-link'></i>";
     divBtn.className = "btn note-btn";
     divBtn2.className = "btn note-btn";
 
@@ -229,3 +229,24 @@ closeNote.forEach((close) => {
         closeModal();
     });
 })
+
+// this function allows to copy the text to the Clipboard
+function copyElement(test) {
+    let textArea = document.createElement("textarea");
+    textArea.value = test.parentElement.textContent;
+    const popup = document.querySelector(".copy-popup");
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        let successful = document.execCommand('copy');
+        let msg = successful ? 'successful' : 'unsuccessful';
+        popup.classList.toggle("active");
+        console.log('Copying text command was ' + successful);
+        setTimeout(() => { popup.classList.remove("active"); }, 1000);
+    } catch (err) {
+        console.log('Oops, unable to copy');
+    }
+
+    document.body.removeChild(textArea);
+}
