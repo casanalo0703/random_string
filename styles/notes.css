@@ -302,6 +302,57 @@ select{
     transition: all 0.3s ease;
 }
 
+.style-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.style-button{
+    margin: 0.5rem;
+    width: 51px;
+    height: 42px;
+    border-radius: 11px;
+    font-size: 1.1rem;
+    outline: none;
+}
+
+.bold{
+    font-weight: bold;
+    border: 1px solid #838B96;
+    background: #FFFFFF;
+    color: #838B96;
+    cursor: pointer;
+}
+.bold.active{
+    background: #838B96;
+    color: #FFFFFF;
+}
+
+.italics {
+    background: #FFFFFF;
+    border: 1px solid #006D77;
+    font-weight: italic;
+    color: #006D77;
+    cursor: pointer;
+}
+.italics.active {
+    background: #006D77;
+    color: #FFFFFF;
+}
+
+.underline {
+    background: #FFFFFF;
+    border: 1px solid #222831;
+    text-decoration: underline;
+    color: #222831;
+    cursor: pointer;
+}
+.underline.active{
+    background: #222831;
+    color: #FFFFFF;
+}
+
 /* Properties for small devices */
 @media (max-width: 870px){
     .menu{

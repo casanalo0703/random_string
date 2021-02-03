@@ -7,6 +7,7 @@ const SalirG = document.getElementById("SalirG");
 const BorrarG = document.getElementById("BorrarG");
 const h1 = document.getElementById("h1");
 var Id;
+const styleButtons = document.querySelectorAll(".style-button");
 
 // eventListeners
 
@@ -46,7 +47,7 @@ todo_list.addEventListener("click", (e) => {
 
             todo.value = false;
         }
-        
+
         changeNote(todo.parentElement.children[2].value, todo.value)
 
     }
@@ -58,23 +59,20 @@ todo_list.addEventListener("click", (e) => {
     }
     //Mark a note as favourite
     else if (todo.classList[0] === "fav-btn" || todo.parentElement.classList[0] === "fav-btn") {
-        
-        if(todo.parentElement.classList[0] === "fav-btn")
-        {
-            todo=todo.parentElement;
+
+        if (todo.parentElement.classList[0] === "fav-btn") {
+            todo = todo.parentElement;
         }
-        if(todo.value == "true")
-        {
+        if (todo.value == "true") {
             todo.value = false;
-            
+
         }
-        else if(todo.value == "false")
-        {
+        else if (todo.value == "false") {
             todo.value = true;
-            
+
         }
         changeFav(todo.parentElement.children[2].value, todo.value);
-        
+
     }
 
 });
@@ -90,26 +88,26 @@ function favourites() {
 
     while (switching) {
 
-      switching = false;
-      b = list.getElementsByTagName("div");
+        switching = false;
+        b = list.getElementsByTagName("div");
 
-      for (i = 0; i < (b.length - 1); i++) {
+        for (i = 0; i < (b.length - 1); i++) {
 
-        shouldSwitch = false;
+            shouldSwitch = false;
 
-        if (b[i].children[1].value < b[i+1].children[1].value) {
-            shouldSwitch = true;
-            break;
+            if (b[i].children[1].value < b[i + 1].children[1].value) {
+                shouldSwitch = true;
+                break;
+            }
         }
-      }
-      if (shouldSwitch) {
-        console.log(b[i].children[0].textContent);
-        console.log(b[i+1].children[0].textContent);
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
-        console.log(b[i].children[0].textContent);
-        console.log(b[i+1].children[0].textContent);
-      }
+        if (shouldSwitch) {
+            console.log(b[i].children[0].textContent);
+            console.log(b[i + 1].children[0].textContent);
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            console.log(b[i].children[0].textContent);
+            console.log(b[i + 1].children[0].textContent);
+        }
 
     }
 }
@@ -185,3 +183,10 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
         }
     }
 }
+
+//funcion for the buttons
+styleButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("active");
+    });
+})
