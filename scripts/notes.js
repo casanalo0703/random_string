@@ -29,7 +29,7 @@ toggle.addEventListener('click', (e) => {
 // note-btn listener
 note_btn.addEventListener("click", function (event) {
     event.preventDefault();
-    pushNote(document.getElementById("text-box").value, SelectColor.value, false);
+    pushNote(document.getElementById("text-box").value, SelectColor.value, false, style());
     document.getElementById("text-box").value = '';
 });
 
@@ -124,7 +124,7 @@ function Title(x) {
     h1.innerText = x;
 }
 
-function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
+function NewNote(content, color, Status, NoteId, MeAdmin, fav, style) {
     if (content != 0) {
         //creating element
         var div = document.createElement("div")
@@ -146,6 +146,38 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
         div.className = "note";
         li.className = "note-content";
         li.textContent = content;
+
+        //Selector for font
+        switch (style) {
+            case 1: 
+                li.style.fontWeight = "bold";
+                break;
+            case 2:
+                li.style.fontStyle = "italic";
+                
+                break;
+            case 3: 
+                li.style.textDecoration = "underline";
+                break;
+            case 4:
+                li.style.fontWeight = "bold";
+                li.style.fontStyle = "italic";
+                break;
+            
+            case 5:
+                li.style.fontWeight = "bold";
+                li.style.textDecoration = "underline";
+                break;
+            case 6: 
+                li.style.fontStyle = "italic";
+                li.style.textDecoration = "underline";
+                break;
+            case 7:
+                li.style.fontWeight = "bold";
+                li.style.fontStyle = "italic";
+                li.style.textDecoration = "underline";
+                break;
+        }
 
         b1.setAttribute("value", NoteId);
         b2.setAttribute("value", Status);
@@ -190,3 +222,38 @@ styleButtons.forEach(button => {
         button.classList.toggle("active");
     });
 })
+
+//Function that returns which font was selected and its possible combinations
+function style(){
+    let bID = [];
+    styleButtons.forEach(button => {
+        bID.push(button.classList.contains("active"));
+    })
+    
+    if(!bID[0] && !bID[1]&& !bID[1] && !bID[2]){
+        return 0;
+    }
+
+    if(bID[0] && (!bID[1] && !bID[2])){
+        return 1;
+    }
+    if(bID[1]  && (!bID[0] && !bID[2])){
+        return 2;
+    }
+    if(bID[2]  && (!bID[1] && !bID[0])){
+        return 3;
+    }
+    if(bID[0] && bID[1] && !bID[2]){
+        return 4;
+    }
+    if(bID[0]  && bID[2] && !bID[1]){
+        return 5;
+    }
+    if(bID[1] && bID[2] && !bID[0]){
+        return 6;
+    }
+
+    if(bID[1] && bID[2] && bID[0]){
+        return 7;
+    }
+}

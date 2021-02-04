@@ -29,15 +29,15 @@ firebase.auth().onAuthStateChanged(user => {
             db.ref(`groups/${idGroup}/admins/${user.uid}`).once('value', (e) => {
                 iamAdmin = e.val()
             })
-            NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
+            NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val());
         })
         favourites();
 
     }
 })
 
-//
-function pushNote(text, color, status) {
+
+function pushNote(text, color, status, style) {
     firebase.auth().onAuthStateChanged(user => {
 
         if (user) {
@@ -47,7 +47,8 @@ function pushNote(text, color, status) {
                 color: color,
                 status: status,
                 text: text,
-                favourite: false
+                favourite: false,
+                style: style
             })
         }
     })
@@ -92,7 +93,7 @@ firebase.auth().onAuthStateChanged(user => {
             CleanNotes()
             groupRef.child('notes').once('value', note => {
                 note.forEach(note => {
-                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
+                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val())
                 });
                 favourites();
             })
@@ -108,7 +109,7 @@ firebase.auth().onAuthStateChanged(user => {
             })
             groupRef.child('notes').once('value', note => {
                 note.forEach(note => {
-                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
+                    NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val())
                 });
                 favourites();
             })
