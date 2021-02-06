@@ -7,6 +7,7 @@ const SalirG = document.getElementById("SalirG");
 const BorrarG = document.getElementById("BorrarG");
 const h1 = document.getElementById("h1");
 var Id;
+const styleButtons = document.querySelectorAll(".style-button");
 
 // eventListeners
 
@@ -28,7 +29,7 @@ toggle.addEventListener('click', (e) => {
 // note-btn listener
 note_btn.addEventListener("click", function (event) {
     event.preventDefault();
-    pushNote(document.getElementById("text-box").value, SelectColor.value, false);
+    pushNote(document.getElementById("text-box").value, SelectColor.value, false, style());
     document.getElementById("text-box").value = '';
 });
 
@@ -46,7 +47,7 @@ todo_list.addEventListener("click", (e) => {
 
             todo.value = false;
         }
-        
+
         changeNote(todo.parentElement.children[2].value, todo.value)
 
     }
@@ -58,23 +59,20 @@ todo_list.addEventListener("click", (e) => {
     }
     //Mark a note as favourite
     else if (todo.classList[0] === "fav-btn" || todo.parentElement.classList[0] === "fav-btn") {
-        
-        if(todo.parentElement.classList[0] === "fav-btn")
-        {
-            todo=todo.parentElement;
+
+        if (todo.parentElement.classList[0] === "fav-btn") {
+            todo = todo.parentElement;
         }
-        if(todo.value == "true")
-        {
+        if (todo.value == "true") {
             todo.value = false;
-            
+
         }
-        else if(todo.value == "false")
-        {
+        else if (todo.value == "false") {
             todo.value = true;
-            
+
         }
         changeFav(todo.parentElement.children[2].value, todo.value);
-        
+
     }
 
 });
@@ -90,26 +88,26 @@ function favourites() {
 
     while (switching) {
 
-      switching = false;
-      b = list.getElementsByTagName("div");
+        switching = false;
+        b = list.getElementsByTagName("div");
 
-      for (i = 0; i < (b.length - 1); i++) {
+        for (i = 0; i < (b.length - 1); i++) {
 
-        shouldSwitch = false;
+            shouldSwitch = false;
 
-        if (b[i].children[1].value < b[i+1].children[1].value) {
-            shouldSwitch = true;
-            break;
+            if (b[i].children[1].value < b[i + 1].children[1].value) {
+                shouldSwitch = true;
+                break;
+            }
         }
-      }
-      if (shouldSwitch) {
-        console.log(b[i].children[0].textContent);
-        console.log(b[i+1].children[0].textContent);
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
-        console.log(b[i].children[0].textContent);
-        console.log(b[i+1].children[0].textContent);
-      }
+        if (shouldSwitch) {
+            console.log(b[i].children[0].textContent);
+            console.log(b[i + 1].children[0].textContent);
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
+            console.log(b[i].children[0].textContent);
+            console.log(b[i + 1].children[0].textContent);
+        }
 
     }
 }
@@ -126,7 +124,7 @@ function Title(x) {
     h1.innerText = x;
 }
 
-function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
+function NewNote(content, color, Status, NoteId, MeAdmin, fav, style) {
     if (content != 0) {
         //creating element
         var div = document.createElement("div")
@@ -148,6 +146,38 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
         div.className = "note";
         li.className = "note-content";
         li.textContent = content;
+
+        //Selector for font
+        switch (style) {
+            case 1: 
+                li.style.fontWeight = "bold";
+                break;
+            case 2:
+                li.style.fontStyle = "italic";
+                
+                break;
+            case 3: 
+                li.style.textDecoration = "underline";
+                break;
+            case 4:
+                li.style.fontWeight = "bold";
+                li.style.fontStyle = "italic";
+                break;
+            
+            case 5:
+                li.style.fontWeight = "bold";
+                li.style.textDecoration = "underline";
+                break;
+            case 6: 
+                li.style.fontStyle = "italic";
+                li.style.textDecoration = "underline";
+                break;
+            case 7:
+                li.style.fontWeight = "bold";
+                li.style.fontStyle = "italic";
+                li.style.textDecoration = "underline";
+                break;
+        }
 
         b1.setAttribute("value", NoteId);
         b2.setAttribute("value", Status);
@@ -183,5 +213,47 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
         if (b2.value === "true") {
             div.classList.toggle("completed");
         }
+    }
+}
+
+//funcion for the buttons
+styleButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        button.classList.toggle("active");
+    });
+})
+
+//Function that returns which font was selected and its possible combinations
+function style(){
+    let bID = [];
+    styleButtons.forEach(button => {
+        bID.push(button.classList.contains("active"));
+    })
+    
+    if(!bID[0] && !bID[1]&& !bID[1] && !bID[2]){
+        return 0;
+    }
+
+    if(bID[0] && (!bID[1] && !bID[2])){
+        return 1;
+    }
+    if(bID[1]  && (!bID[0] && !bID[2])){
+        return 2;
+    }
+    if(bID[2]  && (!bID[1] && !bID[0])){
+        return 3;
+    }
+    if(bID[0] && bID[1] && !bID[2]){
+        return 4;
+    }
+    if(bID[0]  && bID[2] && !bID[1]){
+        return 5;
+    }
+    if(bID[1] && bID[2] && !bID[0]){
+        return 6;
+    }
+
+    if(bID[1] && bID[2] && bID[0]){
+        return 7;
     }
 }
