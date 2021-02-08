@@ -133,6 +133,40 @@ header{
     font-size: 1.5rem;
 }
 
+/* Copied text properties */
+
+.copy-popup{
+    position: fixed;
+    bottom: 70px;
+    right: 50px;
+    width: 200px;
+    height: 87px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 11px;
+    font-size: 18px;
+    z-index: 15;
+    transform: scale(0);
+    transition: 200ms ease-in-out;
+}
+.copy-popup.active{
+    transform: scale(1);
+}
+
+.copy-popup span{
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.copy-popup span i{
+    color: #31a17c;
+    padding-right: 1rem;
+}
+
 /* Properties for the notes */
 
 .view_item i{
@@ -183,6 +217,44 @@ header{
     margin-left: 5rem;
 }
 
+/* Exit button properties */
+.exit-btn {
+    font-size: 15px;
+    position:sticky;
+    display:block;
+    color:rgb(255, 255, 255);
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    user-select: none;
+    margin-left: 85%;
+    margin-top: auto;
+    background: #000000;
+    
+    transition: 0.2s;
+
+    padding:7px;
+    border-radius: 10px;
+}
+
+.exit-btn:hover {
+    background: #39393a;
+}
+
+
+.vi_right {
+    width: 100%;
+}
+.grid-delete {
+    margin: auto;
+    margin-bottom: 10px;
+    font-size: 9px;
+    
+    width: 100%;
+}
+
+
+
 .list-view .view_item {
 	background: #fff;
 	border: 1px solid #e2efe1;
@@ -213,7 +285,8 @@ header{
 	margin: 5px 0;
 	font-size: 14px;
 	line-height: 22px;
-	font-weight: 200;
+    font-weight: 200;
+    word-wrap: break-word;
 }
 
 .view_item .btn{
@@ -248,12 +321,13 @@ header{
 }
 
 .grid-view .view_item {
-	display: inline-block;
+	display: table-cell;
     border: 1px solid #e2efe1;
     width: 230px;
     padding: 25px;
     text-align: center;
     margin: 10px;
+    vertical-align:top;
 }
 
 .grid-view .view_item .vi_left{
@@ -546,5 +620,8 @@ header{
 
     .modal-header i, .modal-title{
         font-size: 1.15rem;
+    }
+    .copy-popup{
+        right: 80px;
     }
 }

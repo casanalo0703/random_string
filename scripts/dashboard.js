@@ -24,7 +24,6 @@ var TitleValue;
 var PasswordValue;
 var GroupId;
 var JoinId;
-
 // eventListeners
 
 // navbar listener
@@ -91,6 +90,10 @@ function LoadGroup(id, { name, psswrd }) {
     var i2 = document.createElement("i");
     var viewR = document.createElement("div");
     var viewR2 = document.createElement("div");
+    var pExit = document.createElement("p");
+    var pExit2 = document.createElement("p");
+    pExit.textContent = "ELIMINAR GRUPO";
+    pExit2.textContent = "ELIMINAR GRUPO";
     var pTitle = document.createElement("p");
     var pTitle2 = document.createElement("p");
     var pContent = document.createElement("p");
@@ -112,13 +115,16 @@ function LoadGroup(id, { name, psswrd }) {
     pTitle2.textContent = name;
     pContent.className = "content";
     pContent2.className = "content";
-    pContent.textContent = 'ID: ' + id + ', Password: ' + psswrd;
-    pContent2.textContent = 'ID: ' + id + ', Password: ' + psswrd;
+    pContent.innerHTML = 'ID: ' + id + ', Password: ' + psswrd + "<i style='font-size:1rem;margin:-20px' onclick = copyElement(this) class='fas fa-link'></i>";
+    pContent2.innerHTML = 'ID: ' + id + ', Password: ' + psswrd + "<i style='font-size:1rem;margin:-20px' onclick = copyElement(this) class='fas fa-link'></i>";
     divBtn.className = "btn note-btn";
     divBtn2.className = "btn note-btn";
-
+    pExit.className = "exit-btn";
+    pExit2.className = "exit-btn";
     divBtn.setAttribute("value", id);
     divBtn2.setAttribute("value", id);
+    pExit.setAttribute("id", id);
+    pExit2.setAttribute("id", id);
     var link = 'notes.html#' + id;
     var Hlink = "<a href = " + link + "> Abrir </a>";
     divBtn.innerHTML = Hlink;
@@ -127,12 +133,13 @@ function LoadGroup(id, { name, psswrd }) {
     viewL.appendChild(i);
     viewItem.appendChild(viewL);
     viewItem.appendChild(viewL);
+    viewR.appendChild(pExit);
     viewR.appendChild(pTitle);
     viewR.appendChild(pContent);
     viewR.appendChild(divBtn);
     viewItem.appendChild(viewR);
     wrap.appendChild(viewItem);
-
+    viewItem2.appendChild(pExit2);
     viewL2.appendChild(i2);
     viewItem2.appendChild(viewL2);
     viewR2.appendChild(pTitle2);
@@ -140,6 +147,16 @@ function LoadGroup(id, { name, psswrd }) {
     viewR2.appendChild(divBtn2);
     viewItem2.appendChild(viewR2);
     wrap2.appendChild(viewItem2);
+    pExit2.classList.add("grid-delete");
+
+
+    /* Button delete group for block and list */
+    pExit.addEventListener('click', () => {
+        delteGroup(pExit.getAttribute("id"));
+    });
+    pExit2.addEventListener('click', () => {
+        delteGroup(pExit.getAttribute("id"));
+    });
 }
 
 //changes between grid and list view
@@ -229,3 +246,24 @@ closeNote.forEach((close) => {
         closeModal();
     });
 })
+
+// this function allows to copy the text to the Clipboard
+function copyElement(test) {
+    let textArea = document.createElement("textarea");
+    textArea.value = test.parentElement.textContent;
+    const popup = document.querySelector(".copy-popup");
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+        let successful = document.execCommand('copy');
+        let msg = successful ? 'successful' : 'unsuccessful';
+        popup.classList.toggle("active");
+        console.log('Copying text command was ' + successful);
+        setTimeout(() => { popup.classList.remove("active"); }, 1000);
+    } catch (err) {
+        console.log('Oops, unable to copy');
+    }
+
+    document.body.removeChild(textArea);
+}
