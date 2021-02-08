@@ -8,7 +8,6 @@ const BorrarG = document.getElementById("BorrarG");
 const Sortb = document.getElementById("sort-btn");
 const h1 = document.getElementById("h1");
 var Id;
-
 const styleButtons = document.querySelectorAll(".style-button");
 var SortC =false;
 
@@ -22,6 +21,7 @@ BorrarG.addEventListener("click", function (event) {
     delteGroup()
 });
 
+//Event listener for sort button
 Sortb.addEventListener("click", function (event) {
     if(Sortb.className==="sort-btn fas fa-toggle-off")
     {
@@ -33,6 +33,7 @@ Sortb.addEventListener("click", function (event) {
     else
     {
         Sortb.className="sort-btn fas fa-toggle-off";
+        //Reload the notes so that they appear in the order they were created and not by colour
         firebase.auth().onAuthStateChanged(user => {
             if (user) {
                 const userID = user.uid
@@ -50,7 +51,7 @@ Sortb.addEventListener("click", function (event) {
                         NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
                     });
                 })
-        
+                favourites();
             }
         })
         favourites();
@@ -155,7 +156,7 @@ function favourites() {
       }
     }
 }
-
+//Function that sorts notes by colour
 function SortColour() {
 
     var list, i, switching, b, shouldSwitch;
@@ -171,7 +172,7 @@ function SortColour() {
 
         shouldSwitch = false;
 
-        if (b[i].style.borderLeftColor > b[i+1].style.borderLeftColor) {
+        if (b[i].style.borderLeftColor < b[i+1].style.borderLeftColor) {
             shouldSwitch = true;
             break;
         }
