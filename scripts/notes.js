@@ -5,8 +5,10 @@ const todo_list = document.querySelector("#todo-lists");
 const SelectColor = document.getElementById("color");
 const SalirG = document.getElementById("SalirG");
 const BorrarG = document.getElementById("BorrarG");
+const Sortb = document.getElementById("sort-btn");
 const h1 = document.getElementById("h1");
 var Id;
+var SortC =false;
 
 // eventListeners
 
@@ -17,6 +19,43 @@ SalirG.addEventListener("click", function (event) {
 BorrarG.addEventListener("click", function (event) {
     delteGroup()
 });
+
+Sortb.addEventListener("click", function (event) {
+    if(Sortb.className==="sort-btn fas fa-toggle-off")
+    {
+        Sortb.className="sort-btn fas fa-toggle-on";
+        SortColour();
+        favourites();
+        SortC=true;
+    }
+    else
+    {
+        Sortb.className="sort-btn fas fa-toggle-off";
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                const userID = user.uid
+                let groupRef = firebase.database().ref().child('groups/' + window.location.hash.substring(1))
+        
+        
+        
+                groupRef.child('notes').once('value', note => {
+                    CleanNotes();
+                let iamAdmin
+                    db.ref(`groups/${idGroup}/admins/${user.uid}`).once('value', (e) => {
+                        iamAdmin = e.val()
+                    })
+                    note.forEach(note => {
+                        NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val())
+                    });
+                })
+        
+            }
+        })
+        favourites();
+        SortC=false;
+    }
+});
+
 
 // navbar listener
 toggle.addEventListener('click', (e) => {
@@ -30,6 +69,10 @@ note_btn.addEventListener("click", function (event) {
     event.preventDefault();
     pushNote(document.getElementById("text-box").value, SelectColor.value, false);
     document.getElementById("text-box").value = '';
+    if(SortC)
+    {
+        SortColour();
+    }
 });
 
 //check,remove or mark a note as favorite
@@ -58,15 +101,14 @@ todo_list.addEventListener("click", (e) => {
     }
     //Mark a note as favourite
     else if (todo.classList[0] === "fav-btn" || todo.parentElement.classList[0] === "fav-btn") {
-        
+
         if(todo.parentElement.classList[0] === "fav-btn")
         {
             todo=todo.parentElement;
         }
         if(todo.value == "true")
         {
-            todo.value = false;
-            
+            todo.value = false;    
         }
         else if(todo.value == "false")
         {
@@ -103,12 +145,40 @@ function favourites() {
         }
       }
       if (shouldSwitch) {
-        console.log(b[i].children[0].textContent);
-        console.log(b[i+1].children[0].textContent);
+
         b[i].parentNode.insertBefore(b[i + 1], b[i]);
         switching = true;
-        console.log(b[i].children[0].textContent);
-        console.log(b[i+1].children[0].textContent);
+
+      }
+
+    }
+}
+
+function SortColour() {
+
+    var list, i, switching, b, shouldSwitch;
+    list = todo_list;
+    switching = true;
+
+    while (switching) {
+
+      switching = false;
+      b = list.getElementsByTagName("div");
+        
+      for (i = 0; i < (b.length - 1); i++) {
+
+        shouldSwitch = false;
+
+        if (b[i].style.borderLeftColor > b[i+1].style.borderLeftColor) {
+            shouldSwitch = true;
+            break;
+        }
+      }
+      if (shouldSwitch) {
+
+        b[i].parentNode.insertBefore(b[i + 1], b[i]);
+        switching = true;
+
       }
 
     }
@@ -182,6 +252,9 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav) {
         todo_list.appendChild(div);
         if (b2.value === "true") {
             div.classList.toggle("completed");
+        }
+        if (b3.value === "true") {
+            i3.className = "fas fa-star";;
         }
     }
 }
