@@ -1,5 +1,8 @@
-const db = firebase.database(),
-    groupsRef = db.ref().child('groups')
+const db2 = firebase.database(),
+    groupsRef = db2.ref().child('groups')
+
+const db = firebase.database()
+
 
 
 function createGroup(TitleValue, PasswordValue) {
@@ -102,6 +105,52 @@ function joinGroup(IdGroup, password) {
                     modal.children[0].classList.toggle("active");
                 }
             })
+
+
+        }
+    })
+
+}
+
+function delteGroup(GroupId) {
+    var idGroup = GroupId;
+    
+
+    firebase.auth().onAuthStateChanged(function (user) {
+
+        if (user) {
+            let iamAdmin = false
+            let wasAdmin = true
+            db.ref(`groups/${idGroup}/admins/${user.uid}`).on('value', (e) => {
+                iamAdmin = e.val();
+            })
+
+            db.ref(`groups/${idGroup}/admins`).once("value", member => {
+                if (iamAdmin) {
+                    member.forEach(function (user) {
+                        db.ref(`users/${user.key}/groups/${idGroup}`).remove().then(() => {
+                            db.ref(`users/${user.key}/groups/${idGroup}`).remove()
+                        })
+                    })
+
+                }
+
+            }).then(() => {
+                if (iamAdmin) {
+                    db.ref(`groups/${idGroup}`).remove()
+                } else {
+                    wasAdmin = false
+                    console.log("No eres admin");
+                }
+
+            }).then(() => {
+                if (wasAdmin) {
+                    window.location.href = "dashboard.html"
+                }
+            })
+
+
+
 
 
         }
