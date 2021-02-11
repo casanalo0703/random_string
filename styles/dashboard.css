@@ -1,3 +1,12 @@
+/* color variables */
+:root{
+    --main: #259E90;
+    --secondary: #0B5249;
+    --hover: #52440F;
+    --buttons: #9E8215;
+    --delete: #AD3632;
+}
+
 /* General Properties */
 *{
     margin: 0;
@@ -11,11 +20,11 @@
 header{
     font-size: 1.2rem;
     padding-left: 0.5rem;
-    padding-bottom: 1.25rem;
     width: 100%;
     margin: auto;
     color: #ffffff;
-    background: #222831;
+    background: var(--main);
+    height: 64px;
 }
 
 /* Nav Properties */
@@ -23,9 +32,10 @@ header{
     position: fixed;
     height: 100%;
     width: 9vh;
-    background: #222831;
+    background: var(--main);
     transition: 0.5s;
     overflow: hidden;
+    z-index: 1;
 }
 
 .menu:hover,
@@ -46,7 +56,7 @@ header{
 }
 
 .menu ul li:hover{
-    background:  #5cc4b6;
+    background:  var(--secondary);
 }
 
 .menu ul li a{
@@ -88,12 +98,12 @@ header{
     right: 0;
     width: 60px;
     height: 64px;
-    background: #006d77;
+    background: var(--secondary);
     cursor: pointer;
 }
 
 .toggle.active{
-    background:  #43aa8b;
+    background:  var(--hover);
 }
 
 .toggle::before{
@@ -203,11 +213,11 @@ header{
 }
 
 .links ul li:hover{
-    color: #57bd9e;
+    color: var(--main);
 }
 
 .links ul li.active{
-	color: #F44950;
+	color: #f0444a;
 }
 
 .view_main{
@@ -229,7 +239,7 @@ header{
     user-select: none;
     margin-left: 85%;
     margin-top: auto;
-    background: #000000;
+    background: var(--delete);
     
     transition: 0.2s;
 
@@ -291,14 +301,14 @@ header{
 
 .view_item .btn{
 	width: 125px;
-	background: #784cbd;
+	background: var(--buttons);
 	padding: 8px 5px;
 	border-radius: 50px;
 	color: #fff;
 	text-align: center;
 	font-weight: 200;
     cursor: pointer;
-    
+    transition: 0.3s ease-in-out;
 }
 
 .view_item button{
@@ -313,7 +323,7 @@ header{
 }
 
 .view_item .btn:hover{
-	background: #6699cc;
+	background: var(--hover);
 }
 
 .grid-view{
@@ -359,22 +369,20 @@ header{
     align-items: center;
     color: #ffffff;
     font-size: 2em;
-    background-color: #784cbd;
+    background-color: var(--secondary);
     border-radius: 50%;
     transition: 0.3s ease-in-out;
 }
 
 .action.active-action span{
     transform: rotate(135deg);
-    color: #57bd9e;
-    background-color: #7A7F8A;
 }
 
 .action ul{
     position: absolute;
     bottom: 55px;
     right: 1px;
-    background: #7A7F8A;
+    background: var(--secondary);
     min-width: 275px;
     padding: 20px;
     border-radius: 20px;
@@ -490,7 +498,7 @@ header{
 
 .modal .btn{
     width: 125px;
-	background: #57bd9e;
+	background: var(--buttons);
 	padding: 8px 5px;
 	border-radius: 50px;
 	color: #fff;
@@ -512,14 +520,21 @@ header{
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #006d77;
 }
 
 .modal-header i, .modal-title{
     font-size: 1.75rem;
     font-weight: bold;
-    padding-right: 5px;
-    color: #006d77;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-right: 1rem;
+}
+
+.modal-title{
+    width: 100%;
 }
 
 .modal-header .close-btn{
@@ -527,7 +542,7 @@ header{
     border: none;
     outline: none;
     background: none;
-    color: #57bd9e;
+    color: var(--delete);
     font-size: 1.75rem;
     font-weight: bold;
 }
@@ -541,7 +556,7 @@ header{
     width: 80%;
     background:none;
     outline: none;
-    border: 1px solid #57bd9e;
+    border: 1px solid var(--secondary);
     line-height: 1;
     border-radius: 55px;
     font-size: 1.25rem;

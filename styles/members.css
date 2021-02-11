@@ -1,3 +1,11 @@
+/* Color declaration  */
+:root{
+    --main: #259E90;
+    --secondary: #0B5249;
+    --hover: #52440F;
+    --title: #9E3498;
+}
+
 /* General Properties */
 *{
     margin: 0;
@@ -10,11 +18,11 @@
 header{
     font-size: 1.2rem;
     padding-left: 0.5rem;
-    padding-bottom: 1.25rem;
+    height: 64px;
     width: 100%;
     margin: auto;
     color: #ffffff;
-    background: #222831;
+    background: var(--main);
 }
 
 /* Nav Properties */
@@ -22,7 +30,7 @@ header{
     position: fixed;
     height: 100%;
     width: 9vh;
-    background: #222831;
+    background: var(--main);
     transition: 0.5s;
     overflow: hidden;
 }
@@ -47,7 +55,7 @@ header{
 }
 
 .menu ul li:hover{
-    background:  #5cc4b6;
+    background:  var(--secondary);
 }
 
 .menu ul li a{
@@ -89,12 +97,12 @@ header{
     right: 0;
     width: 60px;
     height: 64px;
-    background: #006d77;
+    background: var(--secondary);
     cursor: pointer;
 }
 
 .toggle.active{
-    background:  #43aa8b;
+    background:  var(--hover);
 }
 
 .toggle::before{
@@ -147,7 +155,7 @@ select{
     font-size: 1.15rem;
     padding: 1em 6em 1em 1.25em;
     border: 0;
-    border-bottom: 2px solid #5cc4b6;
+    border-bottom: 2px solid var(--title);
     border-bottom-right-radius: 3px;
 }
 
@@ -156,7 +164,7 @@ select{
     top: 0;
     right: 0;
     display: block;
-    background: #5cc4b6;
+    background: var(--title);
     height: 100%;
     width: 2rem;
     pointer-events: none;
@@ -205,9 +213,8 @@ select{
     justify-content: space-between;
     align-items: center;
     width: 70%;
-    border: 2px solid black;
     border-radius: 4px;
-    box-shadow: 4px 4px 4px #000000;
+    box-shadow: 1px 1px 6px #000;
 }
 
 .member span{
