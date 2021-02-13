@@ -10,6 +10,9 @@ const h1 = document.getElementById("h1");
 var Id;
 const styleButtons = document.querySelectorAll(".style-button");
 var SortC =false;
+var SortS =false;
+const SortStatus = document.getElementById("sort-status");
+
 
 // eventListeners
 
@@ -21,7 +24,7 @@ BorrarG.addEventListener("click", function (event) {
     delteGroup()
 });
 
-//Event listener for sort button
+//Event listener for "sort color" button
 Sortb.addEventListener("click", function (event) {
     if(Sortb.className==="sort-btn fas fa-toggle-off")
     {
@@ -59,6 +62,43 @@ Sortb.addEventListener("click", function (event) {
     }
 });
 
+//Event listener for "sort status" button
+SortStatus.addEventListener("click", function (event) {
+    if(SortStatus.className==="sort-btn fas fa-toggle-off")
+    {
+        SortStatus.className="sort-btn fas fa-toggle-on";
+        SortStat();
+        favourites();
+        SortS=true;
+    }
+    else
+    {
+        SortStatus.className="sort-btn fas fa-toggle-off";
+        //Reload the notes so that they appear in the order they were created and not by colour
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                const userID = user.uid
+                let groupRef = firebase.database().ref().child('groups/' + window.location.hash.substring(1))
+        
+        
+        
+                groupRef.child('notes').once('value', note => {
+                    CleanNotes();
+                let iamAdmin
+                    db.ref(`groups/${idGroup}/admins/${user.uid}`).once('value', (e) => {
+                        iamAdmin = e.val()
+                    })
+                    note.forEach(note => {
+                        NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val())
+                    });
+                })
+                favourites();
+            }
+        })
+        favourites();
+        SortS=false;
+    }
+});
 
 // navbar listener
 toggle.addEventListener('click', (e) => {
@@ -156,6 +196,36 @@ function favourites() {
       }
     }
 }
+//Sort the notes by Status (Complete/Pending)
+function SortStat() {
+
+    var list, i, switching, b, shouldSwitch;
+    list = todo_list;
+    switching = true;
+
+    while (switching) {
+
+      switching = false;
+      b = list.getElementsByTagName("div");
+        
+      for (i = 0; i < (b.length - 1); i++) {
+
+        shouldSwitch = false;
+
+        if (b[i].children[3].value > b[i+1].children[3].value) {
+            shouldSwitch = true;
+            break;
+        }
+      }
+      if (shouldSwitch) {
+
+        b[i].parentNode.insertBefore(b[i + 1], b[i]);
+        switching = true;
+
+      }
+    }
+}
+
 //Function that sorts notes by colour
 function SortColour() {
 

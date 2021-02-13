@@ -170,8 +170,11 @@ select{
 }
 
 /*Todo properties*/
+.testing{
+    width: min-content;
+}
 .sort-btn{
-    height: 0%;
+    height: min-content;
     border: none;
     padding: 1rem;
     cursor: pointer;
@@ -194,7 +197,7 @@ select{
 .todo-list{
     width: 70%;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     border: 3px solid #443F46;
     border-top: none;
     border-radius: 15px;
