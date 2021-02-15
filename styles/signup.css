@@ -1,6 +1,7 @@
 /* General properties & formatting*/
 :root{
   --background: #ffffff;
+  --background-dark: rgb(48, 48, 48);
 }
 
 * {
@@ -11,7 +12,15 @@
 }
 
 /* body properties */
+.panels-container.dark,.login.dark{
+  color: var(--background);
+  background: var(--background-dark);
+}
 
+.social-icon.dark{
+  color: var(--background);
+  border-color: var(--background);
+}
 /* modal properties */
 .modal{
   position: fixed;

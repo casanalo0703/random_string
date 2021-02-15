@@ -1,9 +1,13 @@
 /* Color declaration  */
 :root{
-    --main: #259E90;
-    --secondary: #0B5249;
-    --hover: #52440F;
-    --title: #9E3498;
+    --main: #2c333f;
+    --secondary: #BB86FC;
+    --hover: #AD3632;
+    --title: #FF7597;
+
+    --background-dark: rgb(48, 48, 48);
+    --text-dark: #ffffff;
+    --body-dark: rgb(20, 20, 20);
 }
 
 /* General Properties */
@@ -243,6 +247,22 @@ button .fa-ban{
 
 button .fa-user-times{
     color: #f87427;
+}
+
+/* Dark mode properties */
+body.dark{
+    background: var(--body-dark);
+    color: var(--text-dark);
+}
+
+.member.dark, #SelectGroup.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
+}
+
+select.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
 }
 
 /* Properties for medium devices */

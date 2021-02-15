@@ -1,12 +1,34 @@
 /* color variables */
 :root{
-    --main: #259E90;
-    --secondary: #0B5249;
+    --main: #2c333f;
+    --secondary: #BB86FC;
     --hover: #52440F;
-    --buttons: #9E8215;
-    --delete: #AD3632;
+    --buttons: #03b4a3;
+    --delete: #f0444a;
+
+    --background-dark: rgb(48, 48, 48);
+    --text-dark: #ffffff;
+    --body-dark: rgb(20, 20, 20);
+
 }
 
+body.dark,.links.dark,.links.dark li,.view_main.dark{
+    background: var(--body-dark);
+    color: var(--text-dark);
+}
+
+.view_item.dark{
+    background: var(--background-dark);
+}
+
+#dark.modal-header,#dark.modal-title,#dark.modal-title i, #dark.modal-body, #title-modal.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.modal.dark{
+    border-radius: 10px;
+}
 /* General Properties */
 *{
     margin: 0;
@@ -103,7 +125,7 @@ header{
 }
 
 .toggle.active{
-    background:  var(--hover);
+    background:  var(--delete);
 }
 
 .toggle::before{
@@ -238,7 +260,6 @@ header{
     text-align: center;
     user-select: none;
     margin-left: 85%;
-    margin-top: auto;
     background: var(--delete);
     
     transition: 0.2s;
@@ -266,7 +287,6 @@ header{
 
 
 .list-view .view_item {
-	background: #fff;
 	border: 1px solid #e2efe1;
 	margin: 10px;
 	padding: 10px 20px;
@@ -276,14 +296,6 @@ header{
 
 .view_item{
     box-shadow: 4px 6px 4px #5f6366;
-}
-
-.list-view .view_item:last-child{
-	margin-bottom: 0;
-}
-
-.list-view .view_item .vi_left{
-	margin-right: 25px;
 }
 
 .view_item .title{
@@ -326,22 +338,39 @@ header{
 	background: var(--hover);
 }
 
+.list-view .view_item:last-child{
+	margin-bottom: 0;
+}
+
+.list-view .view_item .vi_left{
+	margin-right: 25px;
+}
+
 .grid-view{
 	width: 100%;
 }
 
-.grid-view .view_item {
-	display: table-cell;
+.grid-view {
+	display: flex;
     border: 1px solid #e2efe1;
-    width: 230px;
-    padding: 25px;
-    text-align: center;
-    margin: 10px;
-    vertical-align:top;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
-.grid-view .view_item .vi_left{
-	margin-bottom: 10px;
+.grid-view .view_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    width: 230px;
+	margin: 20px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.grid-view .vi_left .vi_right{
+    text-align: center;
 }
 
 .grid-view .view_item .btn{
