@@ -198,8 +198,8 @@ select{
 }
 
 .sort-btn{
-    background: #ffffff;
-    color: rgb(10, 4, 27);
+    background: inherit;
+    color: inherit;
     transition: 200ms ease-in;
 }
 .sort-btn:hover{
