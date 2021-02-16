@@ -21,12 +21,12 @@
 /* Header Properties */
 header{
     font-size: 1.2rem;
-    padding-left: 0.5rem;
-    height: 64px;
+    padding-left: 4rem;
     width: 100%;
     margin: auto;
     color: #ffffff;
     background: var(--main);
+    height: 64px;
 }
 
 /* Nav Properties */
@@ -37,6 +37,8 @@ header{
     background: var(--main);
     transition: 0.5s;
     overflow: hidden;
+    z-index: 1;
+    top:0;
 }
 
 .menu:hover,
@@ -49,6 +51,10 @@ header{
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.menu ul:first-child{
+    margin-top: 3.5rem;
 }
 
 .menu ul li{
@@ -258,6 +264,7 @@ body.dark{
 .member.dark, #SelectGroup.dark{
     background: var(--background-dark);
     color: var(--text-dark);
+    box-shadow: 1px 1px 6px #5f6366;
 }
 
 select.dark{

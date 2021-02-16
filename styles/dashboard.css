@@ -12,23 +12,6 @@
 
 }
 
-body.dark,.links.dark,.links.dark li,.view_main.dark{
-    background: var(--body-dark);
-    color: var(--text-dark);
-}
-
-.view_item.dark{
-    background: var(--background-dark);
-}
-
-#dark.modal-header,#dark.modal-title,#dark.modal-title i, #dark.modal-body, #title-modal.dark{
-    background: var(--background-dark);
-    color: var(--text-dark);
-}
-
-.modal.dark{
-    border-radius: 10px;
-}
 /* General Properties */
 *{
     margin: 0;
@@ -41,7 +24,7 @@ body.dark,.links.dark,.links.dark li,.view_main.dark{
 /* Header Properties */
 header{
     font-size: 1.2rem;
-    padding-left: 0.5rem;
+    padding-left: 4rem;
     width: 100%;
     margin: auto;
     color: #ffffff;
@@ -58,6 +41,7 @@ header{
     transition: 0.5s;
     overflow: hidden;
     z-index: 1;
+    top:0;
 }
 
 .menu:hover,
@@ -70,6 +54,10 @@ header{
     top: 0;
     left: 0;
     width: 100%;
+}
+
+.menu ul:first-child{
+    margin-top: 3.5rem;
 }
 
 .menu ul li{
@@ -295,7 +283,7 @@ header{
 }
 
 .view_item{
-    box-shadow: 4px 6px 4px #5f6366;
+    box-shadow: 1px 1px 6px #5f6366;
 }
 
 .view_item .title{
@@ -606,6 +594,26 @@ header{
 #overlay.active{
     pointer-events: all;
     opacity: 1;
+}
+
+/* dark theme properties */
+body.dark,.links.dark,.links.dark li,.view_main.dark{
+    background: var(--body-dark);
+    color: var(--text-dark);
+}
+
+.view_item.dark{
+    background: var(--background-dark);
+    border: 0;
+}
+
+#dark.modal-header,#dark.modal-title,#dark.modal-title i, #dark.modal-body, #title-modal.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.modal.dark{
+    border-radius: 10px;
 }
 
 /* Properties for medium devices */
