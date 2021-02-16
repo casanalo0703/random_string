@@ -17,11 +17,14 @@ function enableDarkMode() {
         const links = document.querySelector(".links");
         const viewMain = document.querySelector(".view_main");
         const viewItiem = document.querySelectorAll(".view_item");
+        const modal = document.querySelector(".modal");
+
         viewItiem.forEach((item) => {
             console.log(item);
             item.classList.add("dark");
             console.log(item);
         });
+        modal.classList.add("dark");
         links.classList.add("dark");
         viewMain.classList.add("dark");
     } catch (error) { }
@@ -50,6 +53,7 @@ function diasbleDarkMode() {
         const links = document.querySelector(".links");
         const viewMain = document.querySelector(".view_main");
         const viewItiem = document.querySelectorAll(".view_item");
+        const modal = document.querySelector(".modal");
         viewItiem.forEach((item) => {
             console.log(item);
             item.classList.remove("dark");
@@ -57,7 +61,7 @@ function diasbleDarkMode() {
         });
         links.classList.remove("dark");
         viewMain.classList.remove("dark");
-
+        modal.classList.add("dark");
 
     } catch (error) { }
 

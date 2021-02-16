@@ -114,6 +114,7 @@ header{
     height: 64px;
     background: var(--secondary);
     cursor: pointer;
+    z-index: 3;
 }
 
 .toggle.active{
@@ -135,7 +136,6 @@ header{
 
 .toggle.active::before{
     content: '\f00d';
-
 }
 
 /*form properties*/

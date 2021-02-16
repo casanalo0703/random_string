@@ -109,6 +109,7 @@ header{
     height: 64px;
     background: var(--secondary);
     cursor: pointer;
+    z-index: 3;
 }
 
 .toggle.active{

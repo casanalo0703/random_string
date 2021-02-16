@@ -110,6 +110,7 @@ header{
     height: 64px;
     background: var(--secondary);
     cursor: pointer;
+    z-index: 3;
 }
 
 .toggle.active{
@@ -289,6 +290,7 @@ header{
 .view_item .title{
     font-weight: 600;
     font-size: 30px;
+    word-break: break-all;
 }
 
 .view_item .content{
@@ -340,7 +342,6 @@ header{
 
 .grid-view {
 	display: flex;
-    border: 1px solid #e2efe1;
     width: 100%;
     flex-wrap: wrap;
 }
@@ -542,7 +543,7 @@ header{
 .modal-header i, .modal-title{
     font-size: 1.75rem;
     font-weight: bold;
-    color: #000;
+    color: inherit;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -566,6 +567,8 @@ header{
 
 .modal-body{
     padding: 10px 15px;
+    background: inherit;
+    color: inherit;
 }
 
 .modal-body form input{
@@ -577,6 +580,7 @@ header{
     line-height: 1;
     border-radius: 55px;
     font-size: 1.25rem;
+    color: inherit;
 }
 
 #overlay{
@@ -607,13 +611,10 @@ body.dark,.links.dark,.links.dark li,.view_main.dark{
     border: 0;
 }
 
-#dark.modal-header,#dark.modal-title,#dark.modal-title i, #dark.modal-body, #title-modal.dark{
-    background: var(--background-dark);
-    color: var(--text-dark);
-}
-
 .modal.dark{
     border-radius: 10px;
+    background: var(--background-dark);
+    color: var(--text-dark);
 }
 
 /* Properties for medium devices */
@@ -642,7 +643,6 @@ body.dark,.links.dark,.links.dark li,.view_main.dark{
     
     .grid-view .view_item {
         display: inline-block;
-        border: 1px solid #e2efe1;
         width: 200px;
         padding: 25px;
         text-align: center;
@@ -659,7 +659,6 @@ body.dark,.links.dark,.links.dark li,.view_main.dark{
     
     .grid-view .view_item {
         display: inline-block;
-        border: 1px solid #e2efe1;
         width: 90%;
         padding: 5px;
         text-align: center;
