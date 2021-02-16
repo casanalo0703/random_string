@@ -1,10 +1,18 @@
 /* Color declaration  */
 :root{
+    --main: #2c333f;
+    --secondary: #BB86FC;
+    --hover: #f0444a;
+    --title: #03b4a3;
     --note-color-1: #e07536;
     --note-color-2: #fa8072;
     --note-color-3: #789dca;
     --note-color-4:  #57bd9e;
     --note-color-5: #b19cd9;
+
+    --background-dark: rgb(48, 48, 48);
+    --text-dark: #ffffff;
+    --body-dark: rgb(20, 20, 20);
 }
 
 /* General properties */
@@ -15,26 +23,27 @@
     font-family: sans-serif;
 }
 
-/* Header properties */
+/* Header Properties */
 header{
     font-size: 1.2rem;
-    padding-left: 0.5rem;
-    padding-bottom: 1.25rem;
+    padding-left: 4rem;
     width: 100%;
     margin: auto;
     color: #ffffff;
-    background: #222831;
+    background: var(--main);
+    height: 64px;
 }
 
 /* Nav Properties */
 .menu{
-    z-index: 8;
     position: fixed;
     height: 100%;
     width: 9vh;
-    background: #222831;
+    background: var(--main);
     transition: 0.5s;
     overflow: hidden;
+    z-index: 1;
+    top:0;
 }
 
 .menu:hover,
@@ -49,6 +58,10 @@ header{
     width: 100%;
 }
 
+.menu ul:first-child{
+    margin-top: 3.5rem;
+}
+
 .menu ul li{
     position: relative;
     width: 100%;
@@ -57,7 +70,7 @@ header{
 }
 
 .menu ul li:hover{
-    background:  #5cc4b6;
+    background:  var(--secondary);
 }
 
 .menu ul li a{
@@ -99,12 +112,12 @@ header{
     right: 0;
     width: 60px;
     height: 64px;
-    background: #006d77;
+    background: var(--secondary);
     cursor: pointer;
 }
 
 .toggle.active{
-    background:  #43aa8b;
+    background:  var(--hover);
 }
 
 .toggle::before{
@@ -138,7 +151,8 @@ form input, form button{
     font-size: 1rem;
     border: none;
     border-bottom: solid 2px #000000;
-    background-color: #ffffff;
+    background-color: inherit;
+    color: inherit;
 }
 
 form button{
@@ -167,6 +181,8 @@ select{
     font-size: 1rem;
     padding: 1em 1.25em;
     border: 1px solid #5cc4b6;
+    background: inherit;
+    color: inherit;
 }
 
 /*Todo properties*/
@@ -220,7 +236,7 @@ select{
     border-bottom: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    background: #F4B634;
+    background: var(--title);
     color: #ffffff;
     box-shadow: 4px 10px 4px #000000;
 }
@@ -254,7 +270,7 @@ select{
     justify-content: space-between;
     align-items: center;
     border-radius: 15px;
-    box-shadow: 1px 1px 3px #000000;
+    box-shadow: 1px 1px 6px #5f6366;
 }
 
 .note li{
@@ -267,6 +283,7 @@ select{
 }
 
 .delete-btn, .complete-btn,.fav-btn{
+    background: inherit;
     border: none;
     padding: 1rem;
     cursor: pointer;
@@ -274,7 +291,6 @@ select{
 }
 
 .delete-btn{
-    background: #ffffff;
     color: rgb(247, 30, 30);
     transition: 200ms ease-in;
 }
@@ -283,7 +299,6 @@ select{
     background: rgb(247, 30, 30);
 }
 .complete-btn{
-    background: #ffffff;
     color: rgb(63, 182, 73);
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
@@ -295,7 +310,6 @@ select{
 }
 
 .fav-btn{
-    background: #ffffff;
     color: rgb(255, 230, 0);
     transition: 200ms ease-in;
 }
@@ -339,38 +353,49 @@ select{
 
 .bold{
     font-weight: bold;
-    border: 1px solid #838B96;
-    background: #FFFFFF;
-    color: #838B96;
+    border: 1px solid var(--note-color-2);
+    background: inherit;
+    color: var(--note-color-2);
     cursor: pointer;
 }
 .bold.active{
-    background: #838B96;
+    background: var(--note-color-2);
     color: #FFFFFF;
 }
 
 .italics {
-    background: #FFFFFF;
-    border: 1px solid #006D77;
+    background: inherit;
+    border: 1px solid var(--note-color-3);
     font-weight: italic;
-    color: #006D77;
+    color: var(--note-color-3);
     cursor: pointer;
 }
 .italics.active {
-    background: #006D77;
+    background: var(--note-color-3);
     color: #FFFFFF;
 }
 
 .underline {
-    background: #FFFFFF;
-    border: 1px solid #222831;
+    background: inherit;
+    border: 1px solid var(--note-color-1);
     text-decoration: underline;
-    color: #222831;
+    color: var(--note-color-1);
     cursor: pointer;
 }
 .underline.active{
-    background: #222831;
+    background: var(--note-color-1);
     color: #FFFFFF;
+}
+
+/* dark mode properties */
+
+body.dark{
+    background: var(--body-dark);
+}
+
+.todo-list.dark{
+    background: var(--background-dark);
+    color: #ffffff;
 }
 
 /* Properties for small devices */
