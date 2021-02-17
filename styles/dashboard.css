@@ -1,3 +1,17 @@
+/* color variables */
+:root{
+    --main: #2c333f;
+    --secondary: #BB86FC;
+    --hover: #52440F;
+    --buttons: #03b4a3;
+    --delete: #f0444a;
+
+    --background-dark: rgb(48, 48, 48);
+    --text-dark: #ffffff;
+    --body-dark: rgb(20, 20, 20);
+
+}
+
 /* General Properties */
 *{
     margin: 0;
@@ -10,12 +24,12 @@
 /* Header Properties */
 header{
     font-size: 1.2rem;
-    padding-left: 0.5rem;
-    padding-bottom: 1.25rem;
+    padding-left: 4rem;
     width: 100%;
     margin: auto;
     color: #ffffff;
-    background: #222831;
+    background: var(--main);
+    height: 64px;
 }
 
 /* Nav Properties */
@@ -23,9 +37,11 @@ header{
     position: fixed;
     height: 100%;
     width: 9vh;
-    background: #222831;
+    background: var(--main);
     transition: 0.5s;
     overflow: hidden;
+    z-index: 1;
+    top:0;
 }
 
 .menu:hover,
@@ -40,13 +56,17 @@ header{
     width: 100%;
 }
 
+.menu ul:first-child{
+    margin-top: 3.5rem;
+}
+
 .menu ul li{
     position: relative;
     width: 100%;
 }
 
 .menu ul li:hover{
-    background:  #5cc4b6;
+    background:  var(--secondary);
 }
 
 .menu ul li a{
@@ -88,12 +108,13 @@ header{
     right: 0;
     width: 60px;
     height: 64px;
-    background: #006d77;
+    background: var(--secondary);
     cursor: pointer;
+    z-index: 3;
 }
 
 .toggle.active{
-    background:  #43aa8b;
+    background:  var(--delete);
 }
 
 .toggle::before{
@@ -203,11 +224,11 @@ header{
 }
 
 .links ul li:hover{
-    color: #57bd9e;
+    color: var(--main);
 }
 
 .links ul li.active{
-	color: #F44950;
+	color: #f0444a;
 }
 
 .view_main{
@@ -228,8 +249,7 @@ header{
     text-align: center;
     user-select: none;
     margin-left: 85%;
-    margin-top: auto;
-    background: #000000;
+    background: var(--delete);
     
     transition: 0.2s;
 
@@ -256,7 +276,6 @@ header{
 
 
 .list-view .view_item {
-	background: #fff;
 	border: 1px solid #e2efe1;
 	margin: 10px;
 	padding: 10px 20px;
@@ -265,20 +284,13 @@ header{
 }
 
 .view_item{
-    box-shadow: 4px 6px 4px #5f6366;
-}
-
-.list-view .view_item:last-child{
-	margin-bottom: 0;
-}
-
-.list-view .view_item .vi_left{
-	margin-right: 25px;
+    box-shadow: 1px 1px 6px #5f6366;
 }
 
 .view_item .title{
     font-weight: 600;
     font-size: 30px;
+    word-break: break-all;
 }
 
 .view_item .content{
@@ -291,14 +303,14 @@ header{
 
 .view_item .btn{
 	width: 125px;
-	background: #784cbd;
+	background: var(--buttons);
 	padding: 8px 5px;
 	border-radius: 50px;
 	color: #fff;
 	text-align: center;
 	font-weight: 200;
     cursor: pointer;
-    
+    transition: 0.3s ease-in-out;
 }
 
 .view_item button{
@@ -313,25 +325,41 @@ header{
 }
 
 .view_item .btn:hover{
-	background: #6699cc;
+	background: var(--hover);
+}
+
+.list-view .view_item:last-child{
+	margin-bottom: 0;
+}
+
+.list-view .view_item .vi_left{
+	margin-right: 25px;
 }
 
 .grid-view{
 	width: 100%;
 }
 
-.grid-view .view_item {
-	display: table-cell;
-    border: 1px solid #e2efe1;
-    width: 230px;
-    padding: 25px;
-    text-align: center;
-    margin: 10px;
-    vertical-align:top;
+.grid-view {
+	display: flex;
+    width: 100%;
+    flex-wrap: wrap;
 }
 
-.grid-view .view_item .vi_left{
-	margin-bottom: 10px;
+.grid-view .view_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    width: 230px;
+	margin: 20px;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.grid-view .vi_left .vi_right{
+    text-align: center;
 }
 
 .grid-view .view_item .btn{
@@ -359,22 +387,20 @@ header{
     align-items: center;
     color: #ffffff;
     font-size: 2em;
-    background-color: #784cbd;
+    background-color: var(--secondary);
     border-radius: 50%;
     transition: 0.3s ease-in-out;
 }
 
 .action.active-action span{
     transform: rotate(135deg);
-    color: #57bd9e;
-    background-color: #7A7F8A;
 }
 
 .action ul{
     position: absolute;
     bottom: 55px;
     right: 1px;
-    background: #7A7F8A;
+    background: var(--secondary);
     min-width: 275px;
     padding: 20px;
     border-radius: 20px;
@@ -490,7 +516,7 @@ header{
 
 .modal .btn{
     width: 125px;
-	background: #57bd9e;
+	background: var(--buttons);
 	padding: 8px 5px;
 	border-radius: 50px;
 	color: #fff;
@@ -512,14 +538,21 @@ header{
     padding: 10px 15px;
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid #006d77;
 }
 
 .modal-header i, .modal-title{
     font-size: 1.75rem;
     font-weight: bold;
-    padding-right: 5px;
-    color: #006d77;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-right: 1rem;
+}
+
+.modal-title{
+    width: 100%;
 }
 
 .modal-header .close-btn{
@@ -527,13 +560,15 @@ header{
     border: none;
     outline: none;
     background: none;
-    color: #57bd9e;
+    color: var(--delete);
     font-size: 1.75rem;
     font-weight: bold;
 }
 
 .modal-body{
     padding: 10px 15px;
+    background: inherit;
+    color: inherit;
 }
 
 .modal-body form input{
@@ -541,10 +576,11 @@ header{
     width: 80%;
     background:none;
     outline: none;
-    border: 1px solid #57bd9e;
+    border: 1px solid var(--secondary);
     line-height: 1;
     border-radius: 55px;
     font-size: 1.25rem;
+    color: inherit;
 }
 
 #overlay{
@@ -562,6 +598,23 @@ header{
 #overlay.active{
     pointer-events: all;
     opacity: 1;
+}
+
+/* dark theme properties */
+body.dark,.links.dark,.links.dark li,.view_main.dark{
+    background: var(--body-dark);
+    color: var(--text-dark);
+}
+
+.view_item.dark{
+    background: var(--background-dark);
+    border: 0;
+}
+
+.modal.dark{
+    border-radius: 10px;
+    background: var(--background-dark);
+    color: var(--text-dark);
 }
 
 /* Properties for medium devices */
@@ -590,7 +643,6 @@ header{
     
     .grid-view .view_item {
         display: inline-block;
-        border: 1px solid #e2efe1;
         width: 200px;
         padding: 25px;
         text-align: center;
@@ -607,7 +659,6 @@ header{
     
     .grid-view .view_item {
         display: inline-block;
-        border: 1px solid #e2efe1;
         width: 90%;
         padding: 5px;
         text-align: center;

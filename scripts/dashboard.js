@@ -101,8 +101,15 @@ function LoadGroup(id, { name, psswrd }) {
     var divBtn = document.createElement("button");
     var divBtn2 = document.createElement("button");
 
-    viewItem.className = "view_item";
-    viewItem2.className = "view_item";
+
+    if (document.body.classList[0] == "dark") {
+        viewItem.className = "view_item dark";
+        viewItem2.className = "view_item dark";
+    }
+    else {
+        viewItem.className = "view_item";
+        viewItem2.className = "view_item";
+    }
     viewL.className = "vi_left";
     viewL2.className = "vi_left";
     i.className = "fas fa-sticky-note";
@@ -178,7 +185,7 @@ li_links.forEach(function (link) {
             list_view.style.display = "block";
         }
         else {
-            grid_view.style.display = "block";
+            grid_view.style.display = "flex";
         }
     });
 });
