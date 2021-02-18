@@ -93,6 +93,38 @@
             <button class="btn psswrd">cambiar la contraseña</button>
             <button class="btn disable">desactivar cuenta</button>
         </div>
+
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Escribe tu nuevo nombre</div>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="return false">
+                    <input type="text" name="input-modal" id="title-modal" required>
+                </form>
+                <div class="modal-btn"><button class="btn submit-btn">Aceptar</button></div>
+            </div>
+        </div>
+
+        <div class="modal-deact">
+            <div class="modal-header">
+                <div class="modal-title">¿Seguro que quieres desactivar tu cuenta?</div>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-btn-deact">
+                    <button class="btn accept">Aceptar</button>
+                    <button class="btn cancel">Cancelar</button>
+                </div>
+            </div>
+        </div>
+        <div id="overlay"></div>
+
+        <!-- Notification popup -->
+        <div class="copy-popup">
+            <span><i class="fas fa-check"></i>Se acaba de mandar un correo</span>
+        </div>
     </body>
 
     <script src="scripts/profile.js"></script>
