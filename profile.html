@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <title>Document</title>
+</head>
+
+<header>
+    <h1>To-Do List</h1>
+</header>
+
+<body>
+
+    <body class="">
+        <!-- Navbar -->
+        <div class="menu">
+            <ul>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="icon"><i class="fas fa-home"></i></span>
+                        <span class="title">Inicio</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="members.html">
+                        <span class="icon"><i class="fas fa-users"></i></span>
+                        <span class="title">Miembros</span>
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="profile.html">
+                        <span class="icon"><i class="fas fa-user"></i></span>
+                        <span class="title">Mi perfil</span>
+                    </a>
+
+                </li>
+
+                <li class="darkModeToggle">
+                    <a>
+                        <span class="icon"><i class="fas fa-adjust"></i></span>
+                        <span class="title">Tema claro/oscuro</span>
+                    </a>
+                </li>
+
+                <li id="logout">
+                    <a href="#">
+                        <span class=" icon"> <i class="fas fa-sign-out-alt"></i></i></span>
+                        <span class="title">Cerrar sesión</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="toggle"></div>
+
+        <!--My profile section-->
+        <div class="myprofile">
+            <h1>Mi perfil</h1>
+            <p>Cambia la configuración de tu cuenta.</p>
+        </div>
+        <div class="card">
+            <span class="title">Nombre de usuario</span>
+            <p>Este es un nombre de prueba.</p>
+            <span class="title">Correo electrónico</span>
+            <p>Este es un nombre de prueba.</p>
+            <span class="title">Redes sociales conectadas.</span>
+            <div class="social-buttons">
+                <div id="facebook" class="social-button">
+                    <i class="fab fa-facebook-f"></i>
+                </div>
+                <div id="twitter" class="social-button">
+                    <i class="fab fa-twitter"></i>
+                </div>
+                <div id="google" class="social-button">
+                    <i class="fab fa-google"></i>
+                </div>
+                <div id="email" class="social-button">
+                    <i class="fas fa-envelope"></i>
+                </div>
+            </div>
+        </div>
+        <div class="config-buttons">
+            <button class="btn user">cambiar nombre de usuario</button>
+            <button class="btn psswrd">cambiar la contraseña</button>
+            <button class="btn disable">desactivar cuenta</button>
+        </div>
+    </body>
+
+    <script src="scripts/profile.js"></script>
+    <script src="scripts/darkmode.js"></script>
+
+</html>

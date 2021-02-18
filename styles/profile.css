@@ -1,13 +1,15 @@
-/* Color declaration  */
+/* color variables */
 :root{
     --main: #2c333f;
     --secondary: #BB86FC;
-    --hover: #AD3632;
-    --title: #FF7597;
+    --hover: #52440F;
+    --buttons: #03b4a3;
+    --delete: #f0444a;
 
     --background-dark: rgb(48, 48, 48);
     --text-dark: #ffffff;
     --body-dark: rgb(20, 20, 20);
+
 }
 
 /* General Properties */
@@ -16,6 +18,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
+    list-style: none;
 }
 
 /* Header Properties */
@@ -27,6 +30,7 @@ header{
     color: #ffffff;
     background: var(--main);
     height: 64px;
+    padding-top: 0.5rem;
 }
 
 /* Nav Properties */
@@ -60,8 +64,6 @@ header{
 .menu ul li{
     position: relative;
     width: 100%;
-    list-style: none;
-
 }
 
 .menu ul li:hover{
@@ -113,7 +115,7 @@ header{
 }
 
 .toggle.active{
-    background:  var(--hover);
+    background:  var(--delete);
 }
 
 .toggle::before{
@@ -133,148 +135,133 @@ header{
     content: '\f00d';
 }
 
-/* Title properties*/
-.main-title{
+/* profile properties */
+.myprofile{
     display: flex;
     align-items: center;
-    text-align: center;
+    justify-content: center;
     flex-direction: column;
     margin: 1.5rem;
 }
 
-.main-title span{
+.myprofile h1{
     font-size: 3.5rem;
-    padding-bottom: 1rem;
-    font-weight: 600;
+    margin: 1.5rem;
 }
 
-.main-title p{
+.myprofile p{
     font-size: 1.5rem;
 }
 
-/* Properties for the dropdown */
-.dropdown{
-    display: grid;
-    place-items: center;
+.card{
+    width: 45%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 6px #5f6366;
+    border-radius: 4px;
+    padding: 0.8rem;
 }
 
-.select{
-    position: relative;
+.card .title{
+    font-size: 2rem;
+    font-weight: 600;
+}
+.card p{
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    font-size: 1.2rem;
 }
 
-select{
-    font-size: 1.15rem;
-    padding: 1em 6em 1em 1.25em;
-    border: 0;
-    border-bottom: 2px solid var(--title);
-    border-bottom-right-radius: 3px;
+.social-buttons{
+    margin-top: 0.5rem;
+    display: flex;
 }
 
-.arrow{
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
-    background: var(--title);
-    height: 100%;
-    width: 2rem;
-    pointer-events: none;
-    border-bottom-right-radius: 3px;
-    border-top-right-radius: 3px;
-}
-
-.arrow::before,
-.arrow::after{
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: 50%;
-    transform: translate(-50%,-50%);
-}
-
-.arrow::before{
-    border-left: .75em solid transparent;
-    border-right: .75em solid transparent;
-    border-bottom: .75em solid rgba(255, 255, 255, .9);
-    top: 35%;
-}
-
-.arrow::after{
-    border-left: .75em solid transparent;
-    border-right: .75em solid transparent;
-    border-top: .75em solid rgba(255, 255, 255, .9);
-    top: 65%;
-}
-
-/* Properties for the memebers */
-
-.member-list{
+.social-button{
+    height: 2.875rem;
+    width: 2.875rem;
     display: flex;
     justify-content: center;
-    margin-top: 4rem;
-    flex-direction: column;
     align-items: center;
+    margin: 0 0.45rem;
+    border-radius: 50%;
+    border: 1px solid #333;
+    font-size: 1rem;
 }
 
-.member{
+#facebook{
+    color: #2d569e;
+    border-color: #2d569e;
+}
+  
+#twitter{
+    color: #5b8fe9;
+    border-color: #5b8fe9;
+}
+  
+#google{
+    color: #ea4335;
+    border-color: #ea4335;
+}
+
+#email{
+    color: #57bd9e;
+    border-color: #57bd9e;
+}
+
+/* configuration buttons */
+.config-buttons{
     display: flex;
-    margin: 1rem;
-    padding: 1.5rem;
-    justify-content: space-between;
-    align-items: center;
-    width: 70%;
-    border-radius: 4px;
-    box-shadow: 1px 1px 6px #000;
+    text-align: center;
+    justify-content: center;
+    margin-top: 1rem;
 }
 
-.member span{
-    flex: 1;
+.btn{
+    border-radius: 20px;
+    margin-right: 1rem;
+    border: none;
+    background: none;
+    padding: 0.5rem;
+    text-align: center;
+    color: var(--text-dark);
+    transition: 0.3s ease;
+    font-size: 0.8rem;
+}
+
+.disable{
     font-weight: 600;
-    font-size: 1.25rem;
+    background: var(--delete);
 }
 
-.member button{
-    font-size: 1.25rem;
-    margin-right: .75rem;
-    padding: .5rem;
-    appearance: none;
-    background: #ffffff;
-    border: 1px solid;
-    border-radius: 4px;
+.disable:hover{
+    background: #b11b20;
 }
 
-button .fa-crown{
-    color: #fcb059;
+.user, .psswrd{
+    background: var(--buttons);
 }
 
-button .fa-ban{
-    color: #F44950;
+.user:hover, .psswrd:hover{
+    background: var(--hover);
 }
 
-button .fa-user-times{
-    color: #f87427;
-}
-
-/* Dark mode properties */
+/* Dark mode propperties */
 body.dark{
     background: var(--body-dark);
     color: var(--text-dark);
 }
 
-.member.dark, #SelectGroup.dark{
+.card.dark{
     background: var(--background-dark);
-    color: var(--text-dark);
-    box-shadow: 1px 1px 6px #5f6366;
-}
-
-select.dark{
-    background: var(--background-dark);
-    color: var(--text-dark);
 }
 
 /* Properties for medium devices */
 @media (max-width: 870px){
+
+    .card{
+        margin: 0 auto;
+        width: 90%;
+    }
     .menu{
         left: -9vh;
         z-index: 2;
@@ -285,7 +272,13 @@ select.dark{
         width: 100%;
         z-index: 2;
     }
-    .member{
-        max-width: 90%;
+    .config-buttons{
+        flex-direction: column;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+
+    .btn{
+        margin-top: 0.5rem;
     }
 }

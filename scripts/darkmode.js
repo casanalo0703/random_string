@@ -3,6 +3,7 @@ const darkModeToggle = document.querySelector(".darkModeToggle");
 
 function enableDarkMode() {
     document.body.classList.add("dark");
+
     try {//try for members.html
         const selectGroup = document.getElementById("SelectGroup");
         const members = document.querySelectorAll(".member");
@@ -13,6 +14,7 @@ function enableDarkMode() {
         });
         selectGroup.classList.add("dark");
     } catch (error) { }
+
     try {//try for dashboard.html
         const links = document.querySelector(".links");
         const viewMain = document.querySelector(".view_main");
@@ -29,9 +31,14 @@ function enableDarkMode() {
         viewMain.classList.add("dark");
     } catch (error) { }
 
-    try {//try for notes.js
+    try {//try for notes.html
         const todoList = document.querySelector(".todo-list");
         todoList.classList.add("dark");
+    } catch (error) { }
+
+    try {//try for profile.html
+        const card = document.querySelector(".card");
+        card.classList.add("dark");
     } catch (error) { }
 
 }
@@ -46,7 +53,6 @@ function diasbleDarkMode() {
             console.log(member);
         });
         selectGroup.classList.remove("dark");
-
     } catch (error) { }
 
     try {//try for dashboard.html
@@ -62,7 +68,6 @@ function diasbleDarkMode() {
         links.classList.remove("dark");
         viewMain.classList.remove("dark");
         modal.classList.add("dark");
-
     } catch (error) { }
 
     try {//try for notes.js
@@ -70,6 +75,10 @@ function diasbleDarkMode() {
         todoList.classList.remove("dark");
     } catch (error) { }
 
+    try {//try for profile.html
+        const card = document.querySelector(".card");
+        card.classList.remove("dark");
+    } catch (error) { }
 }
 console.log("Recien abierto" + darkMode);
 
