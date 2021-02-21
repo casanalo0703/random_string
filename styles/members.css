@@ -1,3 +1,15 @@
+/* Color declaration  */
+:root{
+    --main: #2c333f;
+    --secondary: #BB86FC;
+    --hover: #AD3632;
+    --title: #FF7597;
+
+    --background-dark: rgb(48, 48, 48);
+    --text-dark: #ffffff;
+    --body-dark: rgb(20, 20, 20);
+}
+
 /* General Properties */
 *{
     margin: 0;
@@ -9,12 +21,12 @@
 /* Header Properties */
 header{
     font-size: 1.2rem;
-    padding-left: 0.5rem;
-    padding-bottom: 1.25rem;
+    padding-left: 4rem;
     width: 100%;
     margin: auto;
     color: #ffffff;
-    background: #222831;
+    background: var(--main);
+    height: 64px;
 }
 
 /* Nav Properties */
@@ -22,9 +34,11 @@ header{
     position: fixed;
     height: 100%;
     width: 9vh;
-    background: #222831;
+    background: var(--main);
     transition: 0.5s;
     overflow: hidden;
+    z-index: 1;
+    top:0;
 }
 
 .menu:hover,
@@ -39,6 +53,10 @@ header{
     width: 100%;
 }
 
+.menu ul:first-child{
+    margin-top: 3.5rem;
+}
+
 .menu ul li{
     position: relative;
     width: 100%;
@@ -47,7 +65,7 @@ header{
 }
 
 .menu ul li:hover{
-    background:  #5cc4b6;
+    background:  var(--secondary);
 }
 
 .menu ul li a{
@@ -89,12 +107,13 @@ header{
     right: 0;
     width: 60px;
     height: 64px;
-    background: #006d77;
+    background: var(--secondary);
     cursor: pointer;
+    z-index: 3;
 }
 
 .toggle.active{
-    background:  #43aa8b;
+    background:  var(--hover);
 }
 
 .toggle::before{
@@ -147,7 +166,7 @@ select{
     font-size: 1.15rem;
     padding: 1em 6em 1em 1.25em;
     border: 0;
-    border-bottom: 2px solid #5cc4b6;
+    border-bottom: 2px solid var(--title);
     border-bottom-right-radius: 3px;
 }
 
@@ -156,7 +175,7 @@ select{
     top: 0;
     right: 0;
     display: block;
-    background: #5cc4b6;
+    background: var(--title);
     height: 100%;
     width: 2rem;
     pointer-events: none;
@@ -205,9 +224,8 @@ select{
     justify-content: space-between;
     align-items: center;
     width: 70%;
-    border: 2px solid black;
     border-radius: 4px;
-    box-shadow: 4px 4px 4px #000000;
+    box-shadow: 1px 1px 6px #000;
 }
 
 .member span{
@@ -236,6 +254,23 @@ button .fa-ban{
 
 button .fa-user-times{
     color: #f87427;
+}
+
+/* Dark mode properties */
+body.dark{
+    background: var(--body-dark);
+    color: var(--text-dark);
+}
+
+.member.dark, #SelectGroup.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
+    box-shadow: 1px 1px 6px #5f6366;
+}
+
+select.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
 }
 
 /* Properties for medium devices */

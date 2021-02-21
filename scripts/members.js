@@ -35,7 +35,8 @@ function LoadMembers(Admin, MeAdmin, Member, Id) {
         var div = document.createElement("div");
         var span = document.createElement("span");
 
-        div.className = "member";
+        if (SelectGroup.classList[0] == "dark") { div.className = "member dark"; }
+        else { div.className = "member"; }
         span.textContent = Member;
 
         div.appendChild(span);
@@ -49,7 +50,8 @@ function LoadMembers(Admin, MeAdmin, Member, Id) {
         var i1 = document.createElement("i");
         var i2 = document.createElement("i");
 
-        div.className = "member";
+        if (SelectGroup.classList[0] == "dark") { div.className = "member dark"; }
+        else { div.className = "member"; }
         span.textContent = Member;
         b1.value = Id;
         b1.setAttribute("aria-label", "Hacer admin");
@@ -73,7 +75,8 @@ function LoadMembers(Admin, MeAdmin, Member, Id) {
         var i1 = document.createElement("i");
         var i2 = document.createElement("i");
 
-        div.className = "member";
+        if (SelectGroup.classList[0] == "dark") { div.className = "member dark"; }
+        else { div.className = "member"; }
         span.textContent = Member;
         b1.value = Id;
         b1.setAttribute("aria-label", "Remover admin");
