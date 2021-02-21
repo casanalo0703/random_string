@@ -32,7 +32,6 @@ firebase.auth().onAuthStateChanged(user => {
             NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val());
         })
         favourites();
-
     }
 })
 
