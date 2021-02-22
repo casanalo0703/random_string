@@ -68,10 +68,6 @@ note_btn.addEventListener("click", function (event) {
     event.preventDefault();
     pushNote(document.getElementById("text-box").value, SelectColor.value, false, style());
     document.getElementById("text-box").value = '';
-    if(SortC)
-    {
-        SortColour();
-    }
 });
 
 //check,remove or mark a note as favorite
@@ -191,24 +187,24 @@ function SortColour() {
 
     while (switching) {
 
-      switching = false;
-      b = list.getElementsByTagName("div");
-        
-      for (i = 0; i < (b.length - 1); i++) {
+        switching = false;
+        b = list.getElementsByTagName("div");
 
-        shouldSwitch = false;
+        for (i = 0; i < (b.length - 1); i++) {
 
-        if (b[i].style.borderLeftColor < b[i+1].style.borderLeftColor) {
-            shouldSwitch = true;
-            break;
+            shouldSwitch = false;
+
+            if (b[i].style.borderLeftColor < b[i+1].style.borderLeftColor) {
+                shouldSwitch = true;
+                break;
+            }
         }
-      }
-      if (shouldSwitch) {
+        if (shouldSwitch) {
 
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
 
-      }
+        }
     }
 }
 
@@ -315,6 +311,14 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav, style) {
         }
         if (b3.value === "true") {
             i3.className = "fas fa-star";;
+        }
+        if(SortC)
+        {
+            SortColour();
+        }
+        if(SortS)
+        {
+            SortStat();
         }
     }
 }
