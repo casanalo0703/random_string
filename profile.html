@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/styles/profile.css">
+    <link rel="stylesheet" href="styles/profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
         integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
         crossorigin="anonymous" />
@@ -69,23 +69,12 @@
         </div>
         <div class="card">
             <span class="title">Nombre de usuario</span>
-            <p>Este es un nombre de prueba.</p>
+            <p id="name-user">Cargando...</p>
             <span class="title">Correo electrónico</span>
-            <p>Este es un nombre de prueba.</p>
+            <p id="email-user">Cargando...</p>
             <span class="title">Redes sociales conectadas.</span>
             <div class="social-buttons">
-                <div id="facebook" class="social-button">
-                    <i class="fab fa-facebook-f"></i>
-                </div>
-                <div id="twitter" class="social-button">
-                    <i class="fab fa-twitter"></i>
-                </div>
-                <div id="google" class="social-button">
-                    <i class="fab fa-google"></i>
-                </div>
-                <div id="email" class="social-button">
-                    <i class="fas fa-envelope"></i>
-                </div>
+
             </div>
         </div>
         <div class="config-buttons">
@@ -103,16 +92,27 @@
                 <form onsubmit="return false">
                     <input type="text" name="input-modal" id="title-modal" required>
                 </form>
-                <div class="modal-btn"><button class="btn submit-btn">Aceptar</button></div>
+                <div class="modal-btn"><button class="btn submit-btn" id="submit-btn-name">Aceptar</button></div>
             </div>
         </div>
 
+        <div class="modal" id="error-popup">
+            <div class="modal-header">
+                <div class="modal-title">No se ha podido mandar el correo de cambio de contraseña debido a que esta cuenta solo esta vinculada a una red social</div>
+            </div>
+            <div class="modal-body">
+                <div class="modal-btn"><button class="btn submit-btn" id="submit-btn-error">Aceptar</button></div>
+            </div>
+        </div>
+
+
         <div class="modal-deact">
             <div class="modal-header">
-                <div class="modal-title">¿Seguro que quieres desactivar tu cuenta?</div>
+                <div class="modal-title" id="text-desactivate">¿Seguro que quieres desactivar tu cuenta?</div>
                 <button class="close-btn">&times;</button>
             </div>
             <div class="modal-body">
+                <div id="body-desactivate"></div>
                 <div class="modal-btn-deact">
                     <button class="btn accept">Aceptar</button>
                     <button class="btn cancel">Cancelar</button>
@@ -126,8 +126,16 @@
             <span><i class="fas fa-check"></i>Se acaba de mandar un correo</span>
         </div>
     </body>
-
-    <script src="scripts/profile.js"></script>
     <script src="scripts/darkmode.js"></script>
+
+        <!-- SDK FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.24.0/firebase-functions.js"></script>
+
+<script src="scripts/firebaseInit.js"></script>
+<script src="scripts/logout.js"></script>
+<script src="scripts/profile.js"></script>
 
 </html>
