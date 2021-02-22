@@ -35,30 +35,7 @@ Sortb.addEventListener("click", function (event) {
     }
     else
     {
-        Sortb.className="sort-btn fas fa-toggle-off";
-        //Reload the notes so that they appear in the order they were created and not by colour
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                const userID = user.uid
-                let groupRef = firebase.database().ref().child('groups/' + window.location.hash.substring(1))
-        
-        
-        
-                groupRef.child('notes').once('value', note => {
-                    CleanNotes();
-                let iamAdmin
-                    db.ref(`groups/${idGroup}/admins/${user.uid}`).once('value', (e) => {
-                        iamAdmin = e.val()
-                    })
-                    note.forEach(note => {
-                        NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val())
-                    });
-                })
-                favourites();
-            }
-        })
-        favourites();
-        SortC=false;
+        location.reload();
     }
 });
 
@@ -75,28 +52,7 @@ SortStatus.addEventListener("click", function (event) {
     {
         SortStatus.className="sort-btn fas fa-toggle-off";
         //Reload the notes so that they appear in the order they were created and not by colour
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                const userID = user.uid
-                let groupRef = firebase.database().ref().child('groups/' + window.location.hash.substring(1))
-        
-        
-        
-                groupRef.child('notes').once('value', note => {
-                    CleanNotes();
-                let iamAdmin
-                    db.ref(`groups/${idGroup}/admins/${user.uid}`).once('value', (e) => {
-                        iamAdmin = e.val()
-                    })
-                    note.forEach(note => {
-                        NewNote(note.child('text').val(), note.child('color').val(), note.child('status').val(), note.key, iamAdmin, note.child('favourite').val(), note.child('style').val())
-                    });
-                })
-                favourites();
-            }
-        })
-        favourites();
-        SortS=false;
+        location.reload();
     }
 });
 
@@ -112,10 +68,6 @@ note_btn.addEventListener("click", function (event) {
     event.preventDefault();
     pushNote(document.getElementById("text-box").value, SelectColor.value, false, style());
     document.getElementById("text-box").value = '';
-    if(SortC)
-    {
-        SortColour();
-    }
 });
 
 //check,remove or mark a note as favorite
@@ -235,24 +187,24 @@ function SortColour() {
 
     while (switching) {
 
-      switching = false;
-      b = list.getElementsByTagName("div");
-        
-      for (i = 0; i < (b.length - 1); i++) {
+        switching = false;
+        b = list.getElementsByTagName("div");
 
-        shouldSwitch = false;
+        for (i = 0; i < (b.length - 1); i++) {
 
-        if (b[i].style.borderLeftColor < b[i+1].style.borderLeftColor) {
-            shouldSwitch = true;
-            break;
+            shouldSwitch = false;
+
+            if (b[i].style.borderLeftColor < b[i+1].style.borderLeftColor) {
+                shouldSwitch = true;
+                break;
+            }
         }
-      }
-      if (shouldSwitch) {
+        if (shouldSwitch) {
 
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
 
-      }
+        }
     }
 }
 
@@ -359,6 +311,14 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav, style) {
         }
         if (b3.value === "true") {
             i3.className = "fas fa-star";;
+        }
+        if(SortC)
+        {
+            SortColour();
+        }
+        if(SortS)
+        {
+            SortStat();
         }
     }
 }

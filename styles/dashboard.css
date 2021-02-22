@@ -188,6 +188,10 @@ header{
     padding-right: 1rem;
 }
 
+
+
+
+
 /* Properties for the notes */
 
 .view_item i{
@@ -236,6 +240,13 @@ header{
 	border-radius: 3px;
     padding: 15px;
     margin-left: 5rem;
+}
+/* balloon */
+
+
+.tooltip {
+    --balloon-font-size: 15px;
+    --balloon-move: 55px;
 }
 
 /* Exit button properties */
@@ -378,7 +389,13 @@ header{
     box-shadow: 0 5px 5px rgba(0, 0, 0, 0.4);
     cursor: pointer;
 }
-.action span{
+
+.action div {
+    width: 100%;
+    height: 100%;
+}
+
+.action div span{
     position: relative;
     width: 100%;
     height: 100%;
