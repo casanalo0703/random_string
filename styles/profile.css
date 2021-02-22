@@ -255,6 +255,15 @@ body.dark{
     background: var(--background-dark);
 }
 
+.modal.dark, .modal-deact.dark{
+    background: var(--background-dark);
+    color: var(--text-dark);
+}
+
+.modal.dark input, .modal-deact.dark input{
+    background: var(--body-dark);
+}
+
 /* Properties for modal */
 
 .modal, .modal-deact{
@@ -291,7 +300,7 @@ body.dark{
     justify-content: space-between;
     text-align: center;
     font-size: 2.25rem;
-    color: #444444;
+    color: inherit;
     font-weight: bold;
 }
 

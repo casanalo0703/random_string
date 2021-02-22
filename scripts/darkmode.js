@@ -1,16 +1,18 @@
 let darkMode = localStorage.getItem('darkMode1');
 const darkModeToggle = document.querySelector(".darkModeToggle");
 
+//Functions
+
+//this funcion adds the class dark to all the webpages
 function enableDarkMode() {
     document.body.classList.add("dark");
 
     try {//try for members.html
         const selectGroup = document.getElementById("SelectGroup");
         const members = document.querySelectorAll(".member");
+
         members.forEach((member) => {
-            console.log(member);
             member.classList.add("dark");
-            console.log(member);
         });
         selectGroup.classList.add("dark");
     } catch (error) { }
@@ -33,20 +35,30 @@ function enableDarkMode() {
 
     try {//try for notes.html
         const todoList = document.querySelector(".todo-list");
+
         todoList.classList.add("dark");
     } catch (error) { }
 
     try {//try for profile.html
         const card = document.querySelector(".card");
+        const modal = document.querySelector(".modal");
+        const modalDeact = document.querySelector(".modal-deact");
+
         card.classList.add("dark");
+        modal.classList.add("dark");
+        modalDeact.classList.add("dark");
     } catch (error) { }
 
 }
 
+//this funcion removes the class dark to all the webpages
 function diasbleDarkMode() {
     document.body.classList.remove("dark");
+
     try {//try for members.html
         const members = document.querySelectorAll(".member");
+        const selectGroup = document.getElementById("SelectGroup");
+
         members.forEach((member) => {
             console.log(member);
             member.classList.remove("dark");
@@ -60,6 +72,7 @@ function diasbleDarkMode() {
         const viewMain = document.querySelector(".view_main");
         const viewItiem = document.querySelectorAll(".view_item");
         const modal = document.querySelector(".modal");
+
         viewItiem.forEach((item) => {
             console.log(item);
             item.classList.remove("dark");
@@ -77,28 +90,32 @@ function diasbleDarkMode() {
 
     try {//try for profile.html
         const card = document.querySelector(".card");
+        const modal = document.querySelector(".modal");
+        const modalDeact = document.querySelector(".modal-deact");
+
         card.classList.remove("dark");
+        modal.classList.remove("dark");
+        modalDeact.classList.remove("dark");
     } catch (error) { }
 }
-console.log("Recien abierto" + darkMode);
 
+
+//event listeners
+
+//This event listener toggles between dark and white mode
 darkModeToggle.addEventListener("click", () => {
     darkMode = localStorage.getItem('darkMode1');
-    console.log("Antes de if " + darkMode);
     if (darkMode == "enabled") {
         diasbleDarkMode();
-        console.log("entro 1")
         localStorage.setItem('darkMode1', null);
     }
     else {
         enableDarkMode();
-        console.log("entro 2");
         localStorage.setItem('darkMode1', 'enabled');
     }
-    darkMode = localStorage.getItem('darkMode1');
-    console.log(darkMode)
 });
 
+//this if checks if you have saved darkmode on localstorage on page load
 if (darkMode == "enabled") {
     enableDarkMode();
 }
