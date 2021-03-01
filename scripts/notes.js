@@ -9,8 +9,8 @@ const Sortb = document.getElementById("sort-btn");
 const h1 = document.getElementById("h1");
 var Id;
 const styleButtons = document.querySelectorAll(".style-button");
-var SortC =false;
-var SortS =false;
+var SortC = false;
+var SortS = false;
 const SortStatus = document.getElementById("sort-status");
 
 
@@ -26,31 +26,27 @@ BorrarG.addEventListener("click", function (event) {
 
 //Event listener for "sort color" button
 Sortb.addEventListener("click", function (event) {
-    if(Sortb.className==="sort-btn fas fa-toggle-off")
-    {
-        Sortb.className="sort-btn fas fa-toggle-on";
+    if (Sortb.className === "sort-btn fas fa-toggle-off") {
+        Sortb.className = "sort-btn fas fa-toggle-on";
         SortColour();
         favourites();
-        SortC=true;
+        SortC = true;
     }
-    else
-    {
+    else {
         location.reload();
     }
 });
 
 //Event listener for "sort status" button
 SortStatus.addEventListener("click", function (event) {
-    if(SortStatus.className==="sort-btn fas fa-toggle-off")
-    {
-        SortStatus.className="sort-btn fas fa-toggle-on";
+    if (SortStatus.className === "sort-btn fas fa-toggle-off") {
+        SortStatus.className = "sort-btn fas fa-toggle-on";
         SortStat();
         favourites();
-        SortS=true;
+        SortS = true;
     }
-    else
-    {
-        SortStatus.className="sort-btn fas fa-toggle-off";
+    else {
+        SortStatus.className = "sort-btn fas fa-toggle-off";
         //Reload the notes so that they appear in the order they were created and not by colour
         location.reload();
     }
@@ -98,13 +94,11 @@ todo_list.addEventListener("click", (e) => {
     else if (todo.classList[0] === "fav-btn" || todo.parentElement.classList[0] === "fav-btn") {
 
 
-        if(todo.parentElement.classList[0] === "fav-btn")
-        {
-            todo=todo.parentElement;
+        if (todo.parentElement.classList[0] === "fav-btn") {
+            todo = todo.parentElement;
         }
-        if(todo.value == "true")
-        {
-            todo.value = false;    
+        if (todo.value == "true") {
+            todo.value = false;
         }
         else if (todo.value == "false") {
             todo.value = true;
@@ -139,13 +133,13 @@ function favourites() {
                 break;
             }
 
-      }
-      if (shouldSwitch) {
+        }
+        if (shouldSwitch) {
 
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
 
-      }
+        }
     }
 }
 //Sort the notes by Status (Complete/Pending)
@@ -157,24 +151,24 @@ function SortStat() {
 
     while (switching) {
 
-      switching = false;
-      b = list.getElementsByTagName("div");
-        
-      for (i = 0; i < (b.length - 1); i++) {
+        switching = false;
+        b = list.getElementsByTagName("div");
 
-        shouldSwitch = false;
+        for (i = 0; i < (b.length - 1); i++) {
 
-        if (b[i].children[3].value > b[i+1].children[3].value) {
-            shouldSwitch = true;
-            break;
+            shouldSwitch = false;
+
+            if (b[i].children[3].value > b[i + 1].children[3].value) {
+                shouldSwitch = true;
+                break;
+            }
         }
-      }
-      if (shouldSwitch) {
+        if (shouldSwitch) {
 
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
+            b[i].parentNode.insertBefore(b[i + 1], b[i]);
+            switching = true;
 
-      }
+        }
     }
 }
 
@@ -194,7 +188,7 @@ function SortColour() {
 
             shouldSwitch = false;
 
-            if (b[i].style.borderLeftColor < b[i+1].style.borderLeftColor) {
+            if (b[i].style.borderLeftColor < b[i + 1].style.borderLeftColor) {
                 shouldSwitch = true;
                 break;
             }
@@ -245,26 +239,26 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav, style) {
 
         //Selector for font
         switch (style) {
-            case 1: 
+            case 1:
                 li.style.fontWeight = "bold";
                 break;
             case 2:
                 li.style.fontStyle = "italic";
-                
+
                 break;
-            case 3: 
+            case 3:
                 li.style.textDecoration = "underline";
                 break;
             case 4:
                 li.style.fontWeight = "bold";
                 li.style.fontStyle = "italic";
                 break;
-            
+
             case 5:
                 li.style.fontWeight = "bold";
                 li.style.textDecoration = "underline";
                 break;
-            case 6: 
+            case 6:
                 li.style.fontStyle = "italic";
                 li.style.textDecoration = "underline";
                 break;
@@ -312,15 +306,14 @@ function NewNote(content, color, Status, NoteId, MeAdmin, fav, style) {
         if (b3.value === "true") {
             i3.className = "fas fa-star";;
         }
-        if(SortC)
-        {
+        if (SortC) {
             SortColour();
         }
-        if(SortS)
-        {
+        if (SortS) {
             SortStat();
         }
     }
+    favourites();
 }
 
 //funcion for the buttons
@@ -331,36 +324,36 @@ styleButtons.forEach(button => {
 })
 
 //Function that returns which font was selected and its possible combinations
-function style(){
+function style() {
     let bID = [];
     styleButtons.forEach(button => {
         bID.push(button.classList.contains("active"));
     })
-    
-    if(!bID[0] && !bID[1]&& !bID[1] && !bID[2]){
+
+    if (!bID[0] && !bID[1] && !bID[1] && !bID[2]) {
         return 0;
     }
 
-    if(bID[0] && (!bID[1] && !bID[2])){
+    if (bID[0] && (!bID[1] && !bID[2])) {
         return 1;
     }
-    if(bID[1]  && (!bID[0] && !bID[2])){
+    if (bID[1] && (!bID[0] && !bID[2])) {
         return 2;
     }
-    if(bID[2]  && (!bID[1] && !bID[0])){
+    if (bID[2] && (!bID[1] && !bID[0])) {
         return 3;
     }
-    if(bID[0] && bID[1] && !bID[2]){
+    if (bID[0] && bID[1] && !bID[2]) {
         return 4;
     }
-    if(bID[0]  && bID[2] && !bID[1]){
+    if (bID[0] && bID[2] && !bID[1]) {
         return 5;
     }
-    if(bID[1] && bID[2] && !bID[0]){
+    if (bID[1] && bID[2] && !bID[0]) {
         return 6;
     }
 
-    if(bID[1] && bID[2] && bID[0]){
+    if (bID[1] && bID[2] && bID[0]) {
         return 7;
     }
 }
